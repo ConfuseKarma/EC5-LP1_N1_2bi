@@ -39,7 +39,9 @@ begin
     (@id, @nome, @cpf, @telefone, @email, @endereco, @cidade, @estado, @cep)
 end
 GO
+```
 
+```sql
 create procedure spUpdate_Clientes
 (
     @id int,
