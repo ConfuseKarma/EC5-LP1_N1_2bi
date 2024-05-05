@@ -1,0 +1,35 @@
+@model List<CidadeViewModel>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<center><h2>Cidades com terrenos à venda</h2></center>
+<br />
+<div class="fundo-vitrine">
+    <img src="~/images/carrinho.png" />
+    Há @ViewBag.TotalCarrinho terrenos no carrinho.
+    <a href="/Carrinho/Visualizar">Visualizar</a>
+</div>
+<br />
+<br />
+<div class="fundo-vitrine">
+    <ul class="ul-vitrine">
+        @foreach (var cidade in Model)
+        {
+            <li class="li-vitrine">
+                <a href="/Carrinho/Detalhes/?idCidade=@cidade.Id">
+                    <figure class="figura-vitrine">
+                        <img class="imagem-vitrine" src="data:image/jpeg;base64,@cidade.ImagemEmBase64">
+                        <figcaption>
+                            @cidade.Nome<br>
+                        </figcaption>
+                    </figure>
+                </a>
+            </li>
+        }
+    </ul>
+</div>
+
+@section Styles {
+    <link href="@Url.Content("~/css/carrinho.css")" rel="stylesheet" type="text/css" />
+}
