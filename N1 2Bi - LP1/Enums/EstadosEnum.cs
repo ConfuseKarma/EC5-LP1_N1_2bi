@@ -1,6 +1,6 @@
 namespace N1_2Bi___LP1.Enums
 {
-    public enum Estado
+    public enum EstadosEnum
     {
         AC = 1,
         AL = 2,
