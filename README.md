@@ -8,7 +8,7 @@ Neste projeto, estamos desenvolvendo um site de e-commerce utilizando o padrão 
 
 ## Tema do E-commerce
 
-Ainda não decidimos o tema específico do nosso e-commerce. Estamos considerando algumas opções e em breve atualizaremos esta seção com mais informações.
+Fizemos um E-commerce baseadom em:
 
 ### Possíveis Temas:
 - [ ] Moda e Vestuário
@@ -32,6 +32,8 @@ A estrutura do projeto segue o padrão MVC, com os diretórios principais organi
 - **Models**: Contém as classes que representam os modelos de dados do nosso e-commerce.
 - **Views**: Contém as interfaces de usuário em formato .cshtml, responsáveis pela apresentação dos dados ao usuário.
 - **Controllers**: Contém os controladores que gerenciam as requisições do usuário e coordenam a lógica de negócios.
+- **DAO**: Contém as classes responsáveis pela comunicação com o banco de dados, seguindo o padrão DAO (Data Access Object).
+- **Enums**: Contém os arquivos de enumerações utilizados no projeto.
 - **Assets**: Contém arquivos estáticos como imagens, folhas de estilo CSS e scripts JavaScript.
 - **Scripts**: Contém scripts adicionais para funcionalidades específicas do front-end.
 
