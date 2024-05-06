@@ -31,9 +31,30 @@ namespace N1_2Bi___LP1.DAO
             return cliente;
         }
 
+        public void Inserir(ClienteViewModel cliente)
+        {
+            HelperDAO.ExecutaProc("spInsert_Clientes", CriaParametros(cliente));
+        }
+
+        public void Alterar(ClienteViewModel cliente)
+        {
+            HelperDAO.ExecutaProc("spUpdate_Clientes", CriaParametros(cliente));
+        }
+
+        public void Excluir(int id)
+        {
+            var p = new SqlParameter[]
+            {
+        new SqlParameter("id", id)
+            };
+            HelperDAO.ExecutaProc("spDelete", p);
+        }
+
+
         protected override void SetTabela()
         {
             Tabela = "Clientes";
         }
     }
+
 }
