@@ -2,7 +2,7 @@
 
 
 ```sql
-CREATE TABLE Clientes (
+CREATE TABLE Usuarios (
     Id INT PRIMARY KEY,
     Nome VARCHAR(MAX),
     CPF VARCHAR(14),
@@ -16,10 +16,10 @@ CREATE TABLE Clientes (
 
 ```
 
-### Stored Procedures de Clientes
+### Stored Procedures de Usuarios
 
 ```sql
-create procedure spInsert_Clientes
+create procedure spInsert_Usuarios
 (
     @id int,
     @nome varchar(max),
@@ -33,7 +33,7 @@ create procedure spInsert_Clientes
 )
 as
 begin
-    insert into Clientes
+    insert into Usuarios
     (id, nome, cpf, telefone, email, endereco, cidade, estado, cep)
     values
     (@id, @nome, @cpf, @telefone, @email, @endereco, @cidade, @estado, @cep)
@@ -42,7 +42,7 @@ GO
 ```
 
 ```sql
-create procedure spUpdate_Clientes
+create procedure spUpdate_Usuarios
 (
     @id int,
     @nome varchar(max),
@@ -56,7 +56,7 @@ create procedure spUpdate_Clientes
 )
 as
 begin
-    update Clientes set
+    update Usuarios set
     nome = @nome,
     cpf = @cpf,
     telefone = @telefone,

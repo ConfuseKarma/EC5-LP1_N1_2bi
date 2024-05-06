@@ -6,9 +6,9 @@ using System.Diagnostics;
 
 namespace N1_2Bi___LP1.DAO
 {
-    public class ClienteDAO : PadraoDAO<ClienteViewModel>
+    public class UsuarioDAO : PadraoDAO<UsuarioViewModel>
     {
-        protected override SqlParameter[] CriaParametros(ClienteViewModel model)
+        protected override SqlParameter[] CriaParametros(UsuarioViewModel model)
         {
             SqlParameter[] parametros = new SqlParameter[5];
             parametros[0] = new SqlParameter("nome", model.Nome);
@@ -20,25 +20,25 @@ namespace N1_2Bi___LP1.DAO
             return parametros;
         }
 
-        protected override ClienteViewModel MontaModel(DataRow registro)
+        protected override UsuarioViewModel MontaModel(DataRow registro)
         {
-            ClienteViewModel cliente = new ClienteViewModel();
-            cliente.Nome = registro["nome"].ToString();
-            cliente.Cpf = registro["cpf"].ToString();
-            cliente.Telefone = registro["telefone"].ToString();
-            cliente.Email = registro["email"].ToString();
-            cliente.Endereco = registro["endereco"].ToString();
-            return cliente;
+            UsuarioViewModel usuario = new UsuarioViewModel();
+            usuario.Nome = registro["nome"].ToString();
+            usuario.Cpf = registro["cpf"].ToString();
+            usuario.Telefone = registro["telefone"].ToString();
+            usuario.Email = registro["email"].ToString();
+            usuario.Endereco = registro["endereco"].ToString();
+            return usuario;
         }
 
-        public void Inserir(ClienteViewModel cliente)
+        public void Inserir(UsuarioViewModel usuario)
         {
-            HelperDAO.ExecutaProc("spInsert_Clientes", CriaParametros(cliente));
+            HelperDAO.ExecutaProc("spInsert_Usuarios", CriaParametros(usuario));
         }
 
-        public void Alterar(ClienteViewModel cliente)
+        public void Alterar(UsuarioViewModel usuario)
         {
-            HelperDAO.ExecutaProc("spUpdate_Clientes", CriaParametros(cliente));
+            HelperDAO.ExecutaProc("spUpdate_Usuarios", CriaParametros(usuario));
         }
 
         public void Excluir(int id)
@@ -53,7 +53,7 @@ namespace N1_2Bi___LP1.DAO
 
         protected override void SetTabela()
         {
-            Tabela = "Clientes";
+            Tabela = "Usuarios";
         }
     }
 

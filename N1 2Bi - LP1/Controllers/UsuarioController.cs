@@ -7,12 +7,12 @@ using N1_2Bi___LP1.Models;
 namespace N1_2Bi___LP1.Controllers
 {
 
-    public class ClienteController : Controller
+    public class UsuarioController : Controller
     {
         public IActionResult Index()
         {
-            ClienteDAO dao = new ClienteDAO();
-            List<ClienteViewModel> lista = dao.Listagem();
+            UsuarioDAO dao = new UsuarioDAO();
+            List<UsuarioViewModel> lista = dao.Listagem();
             return View(lista);
         }
 
@@ -21,11 +21,11 @@ namespace N1_2Bi___LP1.Controllers
             try
             {
                 ViewBag.Operacao = "I";
-                ClienteViewModel cliente = new ClienteViewModel();
-                ClienteDAO dao = new ClienteDAO();
-                cliente.Id = dao.ProximoId();
+                UsuarioViewModel usuario = new UsuarioViewModel();
+                UsuarioDAO dao = new UsuarioDAO();
+                usuario.Id = dao.ProximoId();
                 PreparaListaEstadosParaCombo();
-                return View("Form", cliente);
+                return View("Form", usuario);
             }
             catch (Exception erro)
             {
@@ -38,13 +38,13 @@ namespace N1_2Bi___LP1.Controllers
             try
             {
                 ViewBag.Operacao = "A";
-                ClienteDAO dao = new ClienteDAO();
-                ClienteViewModel cliente = dao.Consulta(id);
+                UsuarioDAO dao = new UsuarioDAO();
+                UsuarioViewModel usuario = dao.Consulta(id);
                 PreparaListaEstadosParaCombo();
-                if (cliente == null)
+                if (usuario == null)
                     return RedirectToAction("index");
                 else
-                    return View("Form", cliente);
+                    return View("Form", usuario);
             }
             catch (Exception erro)
             {
@@ -52,24 +52,24 @@ namespace N1_2Bi___LP1.Controllers
             }
         }
 
-        public IActionResult Salvar(ClienteViewModel cliente, string Operacao)
+        public IActionResult Salvar(UsuarioViewModel usuario, string Operacao)
         {
             try
             {
-                ValidaDados(cliente, Operacao);
+                ValidaDados(usuario, Operacao);
                 if (ModelState.IsValid == false)
                 {
                     ViewBag.Operacao = Operacao;
                     PreparaListaEstadosParaCombo();
-                    return View("Form", cliente);
+                    return View("Form", usuario);
                 }
                 else
                 {
-                    ClienteDAO dao = new ClienteDAO();
+                    UsuarioDAO dao = new UsuarioDAO();
                     if (Operacao == "I")
-                        dao.Inserir(cliente);
+                        dao.Inserir(usuario);
                     else
-                        dao.Alterar(cliente);
+                        dao.Alterar(usuario);
                     return RedirectToAction("index");
                 }
             }
@@ -79,56 +79,56 @@ namespace N1_2Bi___LP1.Controllers
             }
         }
 
-        private void ValidaDados(ClienteViewModel cliente, string operacao)
+        private void ValidaDados(UsuarioViewModel usuario, string operacao)
         {
             ModelState.Clear(); // Limpa os erros criados automaticamente pelo ASP.NET
 
-            ClienteDAO dao = new ClienteDAO();
+            UsuarioDAO dao = new UsuarioDAO();
 
             // Verifica se o código já está em uso
-            if (operacao == "I" && dao.Consulta(cliente.Id) != null)
+            if (operacao == "I" && dao.Consulta(usuario.Id) != null)
                 ModelState.AddModelError("Id", "Código já está em uso.");
 
-            // Verifica se o cliente existe para operações de alteração
-            if (operacao == "A" && dao.Consulta(cliente.Id) == null)
-                ModelState.AddModelError("Id", "Cliente não existe.");
+            // Verifica se o usuario existe para operações de alteração
+            if (operacao == "A" && dao.Consulta(usuario.Id) == null)
+                ModelState.AddModelError("Id", "Usuario não existe.");
 
             // Verifica se o ID é válido
-            if (cliente.Id <= 0)
+            if (usuario.Id <= 0)
                 ModelState.AddModelError("Id", "Id inválido!");
 
             // Verifica se o nome foi preenchido
-            if (string.IsNullOrEmpty(cliente.Nome))
+            if (string.IsNullOrEmpty(usuario.Nome))
                 ModelState.AddModelError("Nome", "Preencha o nome.");
 
             // Verifica se o CPF foi preenchido
-            if (string.IsNullOrEmpty(cliente.Cpf))
+            if (string.IsNullOrEmpty(usuario.Cpf))
                 ModelState.AddModelError("Cpf", "Preencha o CPF.");
-            else if (!ValidaCPF.IsCpf(cliente.Cpf)) // Verifica se o CPF é válido utilizando a classe ValidaCPF
+            else if (!ValidaCPF.IsCpf(usuario.Cpf)) // Verifica se o CPF é válido utilizando a classe ValidaCPF
                 ModelState.AddModelError("Cpf", "CPF inválido.");
 
             // Verifica se o telefone foi preenchido
-            if (string.IsNullOrEmpty(cliente.Telefone))
+            if (string.IsNullOrEmpty(usuario.Telefone))
                 ModelState.AddModelError("Telefone", "Preencha o telefone.");
 
             // Verifica se o email foi preenchido
-            if (string.IsNullOrEmpty(cliente.Email))
+            if (string.IsNullOrEmpty(usuario.Email))
                 ModelState.AddModelError("Email", "Preencha o email.");
 
             // Verifica se o endereço foi preenchido
-            if (string.IsNullOrEmpty(cliente.Endereco))
+            if (string.IsNullOrEmpty(usuario.Endereco))
                 ModelState.AddModelError("Endereco", "Preencha o endereço.");
 
             // Verifica se a cidade foi preenchida
-            if (string.IsNullOrEmpty(cliente.Cidade))
+            if (string.IsNullOrEmpty(usuario.Cidade))
                 ModelState.AddModelError("Cidade", "Preencha a cidade.");
 
             // Verifica se o estado foi preenchido
-            if (string.IsNullOrEmpty(cliente.Estado))
+            if (string.IsNullOrEmpty(usuario.Estado))
                 ModelState.AddModelError("Estado", "Preencha o estado.");
 
             // Verifica se o CEP foi preenchido
-            if (string.IsNullOrEmpty(cliente.Cep))
+            if (string.IsNullOrEmpty(usuario.Cep))
                 ModelState.AddModelError("Cep", "Preencha o CEP.");
         }
 
