@@ -72,7 +72,7 @@ GO
 
 ## Stored Procedures Genéricas
 
-### spDelete
+### sp's Genéricas
 
 ```sql
 create procedure spDelete
