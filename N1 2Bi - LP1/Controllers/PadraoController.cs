@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using N1_2Bi___LP1.DAO;
 using N1_2Bi___LP1.Models;
 using System.Diagnostics;
@@ -108,5 +109,20 @@ namespace N1_2Bi___LP1.Controllers
                 return View("Error", new ErrorViewModel(erro.ToString()));
             }
         }
+
+        //
+
+        protected bool ExigeAutenticacao { get; set; } = true;
+        public override void OnActionExecuting(ActionExecutingContext context)
+        {
+            if (ExigeAutenticacao && !HelperControllers.VerificaUserLogado(HttpContext.Session))
+                context.Result = RedirectToAction("Index", "Login");
+            else
+            {
+                ViewBag.Logado = true;
+                base.OnActionExecuting(context);
+            }
+        }
+
     }
 }

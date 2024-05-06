@@ -7,7 +7,7 @@ using N1_2Bi___LP1.Models;
 namespace N1_2Bi___LP1.Controllers
 {
 
-    public class UsuarioController : Controller
+    public class UsuarioController : PadraoController<UsuarioViewModel>
     {
         public IActionResult Index()
         {

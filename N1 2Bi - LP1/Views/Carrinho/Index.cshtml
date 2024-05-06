@@ -1,27 +1,27 @@
-@model List<CidadeViewModel>
+@model List<ProdutoViewModel>
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<center><h2>Cidades com terrenos à venda</h2></center>
+<center><h2>Produtos à venda</h2></center>
 <br />
 <div class="fundo-vitrine">
     <img src="~/images/carrinho.png" />
-    Há @ViewBag.TotalCarrinho terrenos no carrinho.
+    Há @ViewBag.TotalCarrinho produtos no carrinho.
     <a href="/Carrinho/Visualizar">Visualizar</a>
 </div>
 <br />
 <br />
 <div class="fundo-vitrine">
     <ul class="ul-vitrine">
-        @foreach (var cidade in Model)
+        @foreach (var produto in Model)
         {
             <li class="li-vitrine">
-                <a href="/Carrinho/Detalhes/?idCidade=@cidade.Id">
+                <a href="/Carrinho/Detalhes/?idProduto=@produto.Id">
                     <figure class="figura-vitrine">
-                        <img class="imagem-vitrine" src="data:image/jpeg;base64,@cidade.ImagemEmBase64">
+                        <img class="imagem-vitrine" src="data:image/jpeg;base64,@produto.ImagemEmBase64">
                         <figcaption>
-                            @cidade.Nome<br>
+                            @produto.Nome<br>
                         </figcaption>
                     </figure>
                 </a>
