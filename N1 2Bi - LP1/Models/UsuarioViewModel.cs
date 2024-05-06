@@ -1,6 +1,6 @@
 namespace N1_2Bi___LP1.Models
 {
-    public class ClienteViewModel : PadraoViewModel
+    public class UsuarioViewModel : PadraoViewModel
     {
         public string Nome { get; set; }
         public string Cpf { get; set; }
