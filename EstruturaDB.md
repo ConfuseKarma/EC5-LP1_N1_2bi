@@ -14,7 +14,6 @@ CREATE TABLE Usuarios (
     Estado VARCHAR(2),
     CEP VARCHAR(10)
 );
-
 ```
 
 ```sql
@@ -24,6 +23,17 @@ CREATE TABLE Produtos (
     Preco DECIMAL(18, 2) NOT NULL,
     Descricao NVARCHAR(MAX),
     ImagemEmBase64 NVARCHAR(MAX)
+);
+```
+
+```sql
+CREATE TABLE PedidoItem (
+    Id INT PRIMARY KEY,
+    PedidoId INT NOT NULL,
+    ProdutoId INT NOT NULL,
+    Qtde INT NOT NULL,
+    CONSTRAINT FK_PedidoItem_Pedido FOREIGN KEY (PedidoId) REFERENCES Pedidos(Id),
+    CONSTRAINT FK_PedidoItem_Produto FOREIGN KEY (ProdutoId) REFERENCES Produtos(Id)
 );
 
 ```
