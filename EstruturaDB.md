@@ -98,6 +98,47 @@ end
 GO
 ```
 
+### Stored Procedures de Produtos
+
+```sql
+CREATE PROCEDURE spInsert_Produtos
+(
+    @Id INT,
+    @Nome NVARCHAR(255),
+    @Preco DECIMAL(18, 2),
+    @Descricao NVARCHAR(MAX),
+    @ImagemEmBase64 NVARCHAR(MAX)
+)
+AS
+BEGIN
+    INSERT INTO Produtos
+    (Id, Nome, Preco, Descricao, ImagemEmBase64)
+    VALUES
+    (@Id, @Nome, @Preco, @Descricao, @ImagemEmBase64)
+END
+GO
+```
+```sql
+CREATE PROCEDURE spUpdate_Produtos
+(
+    @Id INT,
+    @Nome NVARCHAR(255),
+    @Preco DECIMAL(18, 2),
+    @Descricao NVARCHAR(MAX),
+    @ImagemEmBase64 NVARCHAR(MAX)
+)
+AS
+BEGIN
+    UPDATE Produtos SET
+    Nome = @Nome,
+    Preco = @Preco,
+    Descricao = @Descricao,
+    ImagemEmBase64 = @ImagemEmBase64
+    WHERE Id = @Id
+END
+GO
+```
+
 ## Stored Procedures Genéricas
 
 ### sp's Genéricas
