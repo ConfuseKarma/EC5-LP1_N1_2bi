@@ -35,7 +35,13 @@ CREATE TABLE PedidoItem (
     CONSTRAINT FK_PedidoItem_Pedido FOREIGN KEY (PedidoId) REFERENCES Pedidos(Id),
     CONSTRAINT FK_PedidoItem_Produto FOREIGN KEY (ProdutoId) REFERENCES Produtos(Id)
 );
+```
 
+```sql
+CREATE TABLE Pedido (
+    Id INT PRIMARY KEY,
+    Data DATETIME NOT NULL
+);
 ```
 
 ### Stored Procedures de Usuarios
