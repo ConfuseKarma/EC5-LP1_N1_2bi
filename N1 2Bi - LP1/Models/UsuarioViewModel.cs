@@ -6,6 +6,7 @@ namespace N1_2Bi___LP1.Models
         public string Cpf { get; set; }
         public string Telefone { get; set; }
         public string Email { get; set; }
+        public string Senha { get; set; }
         public string Endereco { get; set; }
         public string Numero { get; set; }
         public string Cidade { get; set; }
