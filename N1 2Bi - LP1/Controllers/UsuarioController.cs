@@ -130,6 +130,10 @@ namespace N1_2Bi___LP1.Controllers
             // Verifica se o CEP foi preenchido
             if (string.IsNullOrEmpty(usuario.Cep))
                 ModelState.AddModelError("Cep", "Preencha o CEP.");
+
+            // Verifica se o número da casa foi preenchido
+            if (string.IsNullOrEmpty(usuario.Numero))
+                ModelState.AddModelError("Numero", "Preencha o número da casa.");
         }
 
         public static class ValidaCPF
