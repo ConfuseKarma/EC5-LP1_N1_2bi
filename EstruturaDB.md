@@ -9,9 +9,21 @@ CREATE TABLE Usuarios (
     Telefone VARCHAR(20),
     Email VARCHAR(100),
     Endereco VARCHAR(MAX),
+    Numero VARCHAR(10),
     Cidade VARCHAR(MAX),
     Estado VARCHAR(2),
     CEP VARCHAR(10)
+);
+
+```
+
+```sql
+CREATE TABLE Produto (
+    Id INT PRIMARY KEY,
+    Nome NVARCHAR(255) NOT NULL,
+    Preco DECIMAL(18, 2) NOT NULL,
+    Descricao NVARCHAR(MAX),
+    ImagemEmBase64 NVARCHAR(MAX)
 );
 
 ```
