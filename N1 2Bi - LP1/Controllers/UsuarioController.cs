@@ -115,6 +115,10 @@ namespace N1_2Bi___LP1.Controllers
             if (string.IsNullOrEmpty(usuario.Email))
                 ModelState.AddModelError("Email", "Preencha o email.");
 
+            // Verifica se a senha foi preenchida
+            if (string.IsNullOrEmpty(usuario.Senha))
+                ModelState.AddModelError("Senha", "Preencha a Senha.");
+
             // Verifica se o endereço foi preenchido
             if (string.IsNullOrEmpty(usuario.Endereco))
                 ModelState.AddModelError("Endereco", "Preencha o endereço.");
