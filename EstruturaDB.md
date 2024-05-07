@@ -18,7 +18,7 @@ CREATE TABLE Usuarios (
 ```
 
 ```sql
-CREATE TABLE Produto (
+CREATE TABLE Produtos (
     Id INT PRIMARY KEY,
     Nome NVARCHAR(255) NOT NULL,
     Preco DECIMAL(18, 2) NOT NULL,
