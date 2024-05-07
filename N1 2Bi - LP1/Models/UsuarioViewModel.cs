@@ -7,6 +7,7 @@ namespace N1_2Bi___LP1.Models
         public string Telefone { get; set; }
         public string Email { get; set; }
         public string Endereco { get; set; }
+        public string Numero { get; set; }
         public string Cidade { get; set; }
         public string Estado { get; set; }
         public string Cep { get; set; }
