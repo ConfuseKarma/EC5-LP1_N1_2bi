@@ -14,7 +14,7 @@ namespace N1_2Bi___LP1.DAO
             {
             new SqlParameter("id", model.Id),
             new SqlParameter("PedidoId", model.PedidoId),
-            new SqlParameter("CidadeId", model.CidadeId),
+            new SqlParameter("CidadeId", model.ProdutoId),
             new SqlParameter("Qtde", model.Qtde)
         };
             return parametros;
@@ -25,7 +25,7 @@ namespace N1_2Bi___LP1.DAO
             PedidoItemViewModel c = new PedidoItemViewModel()
             {
                 Id = Convert.ToInt32(registro["id"]),
-                CidadeId = Convert.ToInt32(registro["Cidadeid"]),
+                ProdutoId = Convert.ToInt32(registro["Cidadeid"]),
                 PedidoId = Convert.ToInt32(registro["PedidoId"]),
                 Qtde = Convert.ToInt32(registro["id"]),
             };
