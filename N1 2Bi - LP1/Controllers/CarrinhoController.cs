@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using N1_2Bi___LP1.DAO;
 using N1_2Bi___LP1.Models;
 using Newtonsoft.Json;
 using System.Diagnostics;
@@ -24,7 +25,7 @@ namespace N1_2Bi___LP1.Controllers
                     {
                         PedidoItemViewModel item = new PedidoItemViewModel();
                         item.PedidoId = idPedido;
-                        item.CidadeId = elemento.CidadeId;
+                        item.ProdutoId = elemento.ProdutoId;
                         item.Qtde = elemento.Quantidade;
                         itemDAO.Insert(item);
                     }

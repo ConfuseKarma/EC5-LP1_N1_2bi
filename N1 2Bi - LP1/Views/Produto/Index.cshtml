@@ -1,0 +1,30 @@
+﻿@model List<ProdutoViewModel>
+
+<a href="/produto/Create" class="btn btn-success">Novo Produto</a>
+<br />
+<br />
+<table class="table table-striped table-responsive">
+    <tr>
+        <th>Ações</th>
+        <th>Código</th>
+        <th>Nome</th>
+        <th>Preço</th>
+        <th>Descrição</th>
+        <th>Imagem</th>
+    </tr>
+
+    @foreach (ProdutoViewModel produto in Model)
+    {
+        <tr>
+            <td>
+                <a href="/produto/edit?id=@produto.Id">✍🏻</a>
+                <a href="javascript:apagarProduto(@produto.Id)">💣</a>
+            </td>
+            <td>@produto.Id</td>
+            <td>@produto.Nome</td>
+            <td>@produto.Preco.ToString("C")</td>
+            <td>@produto.Descricao</td>
+            <td><img src="data:image;base64,@produto.ImagemEmBase64" alt="Imagem do Produto" width="100" /></td>
+        </tr>
+    }
+</table>

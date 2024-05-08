@@ -14,6 +14,11 @@ namespace N1_2Bi___LP1.Controllers
             else
                 return true;
         }
+
+        public static void LimparCarrinho(ISession session)
+        {
+            session.Remove("carrinho");
+        }
     }
 
 }
