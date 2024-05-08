@@ -8,7 +8,7 @@ Neste projeto, estamos desenvolvendo um site de e-commerce utilizando o padrão 
 
 ## Tema do E-commerce
 
-Fizemos um E-commerce baseadom em:
+Fizemos um E-commerce baseado em:
 
 ### Possíveis Temas:
 - [ ] Moda e Vestuário
