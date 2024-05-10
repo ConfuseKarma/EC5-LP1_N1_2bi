@@ -1,0 +1,37 @@
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="container content-fluid mt-5 row-gap-5">
+    <div class="row mt-5 gx-3">
+        <div class="col-md-5 mt-5 pt-3">
+            <img src="~/lib/img/login-page-illustration.svg" style="max-width: 90%; height: auto;" />
+        </div>
+
+        <div class="col-md-7">
+            <div class="d-flex gap-5 align-content-center flex-wrap">
+                <div class="row">
+                    <h1 class="display-2 fw-semibold">Welcome <span class="text-info">Back</span>,</h1>
+                    <h2 class="display-5 fw-lighter">please complete the form.</h2>
+                </div>
+                <div class="d-flex gap-3">
+                    <form class="w-100">
+                        <div class="form-group mb-3">
+                            <label for="email"><span class="text-info">E-mail</span></label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Digite seu e-mail">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="senha"><span class="text-info">Senha</span></label>
+                            <input type="password" class="form-control" id="senha" name="senha" placeholder="Digite sua senha">
+                        </div>
+                        <div class="mb-3">
+                            <button type="submit" class="rounded-pill btn btn-lg btn-outline-info mr-3">Entrar</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
