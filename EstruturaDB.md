@@ -39,7 +39,7 @@ CREATE TABLE PedidoItem (
 ```
 
 ```sql
-CREATE TABLE Pedido (
+CREATE TABLE Pedidos (
     Id INT PRIMARY KEY,
     Data DATETIME NOT NULL
 );
