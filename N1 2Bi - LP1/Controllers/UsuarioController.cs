@@ -16,7 +16,7 @@ namespace N1_2Bi___LP1.Controllers
             return View(lista);
         }
 
-        public IActionResult Create()
+        public override IActionResult Create()
         {
             try
             {
