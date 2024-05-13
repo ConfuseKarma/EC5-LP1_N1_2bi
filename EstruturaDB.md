@@ -84,7 +84,7 @@ CREATE PROCEDURE spUpdate_Usuarios
     @cidade VARCHAR(MAX),
     @estado VARCHAR(2),
     @cep VARCHAR(10),
-    @senha VARCHAR(100) -- Adicionando o parâmetro de senha
+    @senha VARCHAR(100) 
 )
 AS
 BEGIN
@@ -97,7 +97,7 @@ BEGIN
     cidade = @cidade,
     estado = @estado,
     cep = @cep,
-    senha = @senha -- Atualizando o campo de senha
+    senha = @senha 
     WHERE id = @id;
 END
 GO
