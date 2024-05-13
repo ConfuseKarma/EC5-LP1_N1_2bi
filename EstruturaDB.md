@@ -48,7 +48,7 @@ CREATE TABLE Pedidos (
 ### Stored Procedures de Usuarios
 
 ```sql
-ALTER PROCEDURE spInsert_Usuarios
+CREATE PROCEDURE spInsert_Usuarios
 (
     @id INT,
     @nome VARCHAR(MAX),
