@@ -8,6 +8,7 @@ CREATE TABLE Usuarios (
     CPF VARCHAR(14),
     Telefone VARCHAR(20),
     Email VARCHAR(100),
+    Senha VARCHAR(100),
     Endereco VARCHAR(MAX),
     Numero VARCHAR(10),
     Cidade VARCHAR(MAX),
