@@ -81,27 +81,13 @@ namespace N1_2Bi___LP1.Controllers
 
         private void ValidaDados(UsuarioViewModel usuario, string operacao)
         {
-            ModelState.Clear(); // Limpa os erros criados automaticamente pelo ASP.NET
-
-            UsuarioDAO dao = new UsuarioDAO();
-
-            // Verifica se o código já está em uso
-            if (operacao == "I" && dao.Consulta(usuario.Id) != null)
-                ModelState.AddModelError("Id", "Código já está em uso.");
-
-            // Verifica se o usuario existe para operações de alteração
-            if (operacao == "A" && dao.Consulta(usuario.Id) == null)
-                ModelState.AddModelError("Id", "Usuario não existe.");
-
-            // Verifica se o ID é válido
-            if (usuario.Id <= 0)
-                ModelState.AddModelError("Id", "Id inválido!");
+            base.ValidaDados(usuario, operacao); // Chama o método da classe base para validar dados básicos
 
             // Verifica se o nome foi preenchido
             if (string.IsNullOrEmpty(usuario.Nome))
                 ModelState.AddModelError("Nome", "Preencha o nome.");
 
-            // Verifica se o CPF foi preenchido
+            // Verifica se o CPF foi preenchido e se é válido
             if (string.IsNullOrEmpty(usuario.Cpf))
                 ModelState.AddModelError("Cpf", "Preencha o CPF.");
             else if (!ValidaCPF.IsCpf(usuario.Cpf)) // Verifica se o CPF é válido utilizando a classe ValidaCPF
@@ -134,11 +120,12 @@ namespace N1_2Bi___LP1.Controllers
             // Verifica se o CEP foi preenchido
             if (string.IsNullOrEmpty(usuario.Cep))
                 ModelState.AddModelError("Cep", "Preencha o CEP.");
-
+        
             // Verifica se o número da casa foi preenchido
             if (string.IsNullOrEmpty(usuario.Numero))
                 ModelState.AddModelError("Numero", "Preencha o número da casa.");
         }
+
 
         public static class ValidaCPF
         {
