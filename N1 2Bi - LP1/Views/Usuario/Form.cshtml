@@ -10,7 +10,7 @@
         <div class="col-md-6">
             <h1 class="display-2 fw-semibold mb-5">Novo Usuário</h1>
             <div class="d-flex align-content-center flex-wrap">
-                <form asp-action="Save" class="needs-validation" enctype="multipart/form-data" novalidate>
+                <form asp-action="Salvar" class="needs-validation" enctype="multipart/form-data" novalidate>
                     <div class="row g-3">
                         <div class="col-md-6 mb-3">
                             <label for="Nome" class="form-label">Nome</label>
@@ -36,6 +36,13 @@
                         <div class="col-md-6 mb-3">
                             <label for="Senha" class="form-label">Senha</label>
                             <input asp-for="Senha" type="password" class="form-control" id="Senha" required>
+                            <div class="valid-feedback">
+                                Parece bom!
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="Cep" class="form-label">CEP</label>
+                            <input asp-for="Cep" type="text" class="form-control" id="Cep" required>
                             <div class="valid-feedback">
                                 Parece bom!
                             </div>
@@ -75,13 +82,7 @@
                                 Parece bom!
                             </div>
                         </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="Cep" class="form-label">CEP</label>
-                            <input asp-for="Cep" type="text" class="form-control" id="Cep" required>
-                            <div class="valid-feedback">
-                                Parece bom!
-                            </div>
-                        </div>
+                        
 
                         <div class="col-md-12 mb-3">
                             <button type="submit" value="Salvar dados" class="rounded-pill btn btn-lg btn-info mr-3">Registrar</button>
