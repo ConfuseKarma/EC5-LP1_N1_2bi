@@ -9,6 +9,8 @@ namespace N1_2Bi___LP1.Controllers
 
     public class UsuarioController : PadraoController<UsuarioViewModel>
     {
+        protected override bool ExigeAutenticacao { get; set; } = false;
+
         public override IActionResult Index()
         {
             UsuarioDAO dao = new UsuarioDAO();

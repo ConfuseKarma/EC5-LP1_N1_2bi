@@ -8,6 +8,7 @@ namespace N1_2Bi___LP1.Controllers
 {
     public class PadraoController<T> : Controller where T : PadraoViewModel
     {
+
         protected PadraoDAO<T> DAO { get; set; }
         protected bool GeraProximoId { get; set; }
         protected string NomeViewIndex { get; set; } = "index";
@@ -112,7 +113,7 @@ namespace N1_2Bi___LP1.Controllers
 
         //
 
-        protected bool ExigeAutenticacao { get; set; } = true;
+        protected virtual bool ExigeAutenticacao { get; set; } = true;
         public override void OnActionExecuting(ActionExecutingContext context)
         {
             if (ExigeAutenticacao && !HelperControllers.VerificaUserLogado(HttpContext.Session))
