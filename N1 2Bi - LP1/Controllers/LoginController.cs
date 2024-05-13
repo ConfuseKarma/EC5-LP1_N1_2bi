@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using N1_2Bi___LP1.DAO;
 using N1_2Bi___LP1.Models;
+using System.Data.SqlClient;
 using System.Diagnostics;
 
 namespace N1_2Bi___LP1.Controllers

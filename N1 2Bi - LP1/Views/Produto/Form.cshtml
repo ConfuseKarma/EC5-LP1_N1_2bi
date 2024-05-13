@@ -26,7 +26,7 @@
    <label for="Imagem" class="control-label">Imagem (Base64)</label>
    <input type="file" name="Imagem" id="Imagem" onchange="exibirImagem()" class="btn btn-secondary">
    <img id="imgPreview" src="data:image/jpeg;base64,@Model.ImagemEmBase64" class="img-responsive" width="200">
-   <span asp-validation-for="Imagem" class="text-danger"></span>
+   <span asp-validation-for="ImagemEmBase64" class="text-danger"></span>
 
 
 
