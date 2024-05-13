@@ -105,6 +105,27 @@ namespace N1_2Bi___LP1.Controllers
             // Verifica se o preço é maior que zero
             if (produto.Preco <= 0)
                 ModelState.AddModelError("Preco", "O preço deve ser maior que zero.");
+
+            //Imagem será obrigatória apenas na inclusão.
+            //Na alteração iremos considerar a que já estava salva.
+            if (model.ImagemEmBase64 == null && operacao == "I")
+                ModelState.AddModelError("ImagemEmBase64", "Escolha uma imagem.");
+            if (!string.IsNullOrEmpty(model.ImagemEmBase64) && model.ImagemEmBase64.Length / 1024 / 1024 >= 2)
+                ModelState.AddModelError("ImagemEmBase64", "Imagem limitada a 2 MB.");
+            if (ModelState.IsValid)
+            {
+                //Na alteração, se não foi informada a imagem, iremos manter a que já estava salva.
+                if (operacao == "A" && model.ImagemEmBase64 == null)
+                {
+                    ProdutoViewModel prod = DAO.Consulta(model.Id);
+                    model.ImagemEmBase64 = prod.ImagemEmBase64;
+                }
+                else
+                {
+                    model.Imagem = ConvertImageToByte(model.ImagemEmBase64);
+                }
+            }
+                
         }
 
 
