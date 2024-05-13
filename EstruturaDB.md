@@ -8,6 +8,7 @@ CREATE TABLE Usuarios (
     CPF VARCHAR(14),
     Telefone VARCHAR(20),
     Email VARCHAR(100),
+    Senha VARCHAR(100),
     Endereco VARCHAR(MAX),
     Numero VARCHAR(10),
     Cidade VARCHAR(MAX),
@@ -38,7 +39,7 @@ CREATE TABLE PedidoItem (
 ```
 
 ```sql
-CREATE TABLE Pedido (
+CREATE TABLE Pedidos (
     Id INT PRIMARY KEY,
     Data DATETIME NOT NULL
 );
@@ -47,44 +48,47 @@ CREATE TABLE Pedido (
 ### Stored Procedures de Usuarios
 
 ```sql
-create procedure spInsert_Usuarios
+CREATE PROCEDURE spInsert_Usuarios
 (
-    @id int,
-    @nome varchar(max),
-    @cpf varchar(14),
-    @telefone varchar(20),
-    @email varchar(100),
-    @endereco varchar(max),
-    @cidade varchar(max),
-    @estado varchar(2),
-    @cep varchar(10)
+    @id INT,
+    @nome VARCHAR(MAX),
+    @cpf VARCHAR(14),
+    @telefone VARCHAR(20),
+    @email VARCHAR(100),
+    @endereco VARCHAR(MAX),
+    @cidade VARCHAR(MAX),
+    @estado VARCHAR(2),
+    @cep VARCHAR(10),
+    @senha VARCHAR(100) 
 )
-as
-begin
-    insert into Usuarios
-    (id, nome, cpf, telefone, email, endereco, cidade, estado, cep)
-    values
-    (@id, @nome, @cpf, @telefone, @email, @endereco, @cidade, @estado, @cep)
-end
+AS
+BEGIN
+    INSERT INTO Usuarios
+    (id, nome, cpf, telefone, email, endereco, cidade, estado, cep, senha)
+    VALUES
+    (@id, @nome, @cpf, @telefone, @email, @endereco, @cidade, @estado, @cep, @senha);
+END
 GO
+
 ```
 
 ```sql
-create procedure spUpdate_Usuarios
+CREATE PROCEDURE spUpdate_Usuarios
 (
-    @id int,
-    @nome varchar(max),
-    @cpf varchar(14),
-    @telefone varchar(20),
-    @email varchar(100),
-    @endereco varchar(max),
-    @cidade varchar(max),
-    @estado varchar(2),
-    @cep varchar(10)
+    @id INT,
+    @nome VARCHAR(MAX),
+    @cpf VARCHAR(14),
+    @telefone VARCHAR(20),
+    @email VARCHAR(100),
+    @endereco VARCHAR(MAX),
+    @cidade VARCHAR(MAX),
+    @estado VARCHAR(2),
+    @cep VARCHAR(10),
+    @senha VARCHAR(100) 
 )
-as
-begin
-    update Usuarios set
+AS
+BEGIN
+    UPDATE Usuarios SET
     nome = @nome,
     cpf = @cpf,
     telefone = @telefone,
@@ -92,10 +96,12 @@ begin
     endereco = @endereco,
     cidade = @cidade,
     estado = @estado,
-    cep = @cep
-    where id = @id
-end
+    cep = @cep,
+    senha = @senha 
+    WHERE id = @id;
+END
 GO
+
 ```
 
 ### Stored Procedures de Produtos

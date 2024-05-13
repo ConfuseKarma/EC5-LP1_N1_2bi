@@ -23,10 +23,13 @@
     <span asp-validation-for="Descricao" class="text-danger"></span>
     <br />
 
-    <label for="ImagemEmBase64" class="control-label">Imagem (Base64)</label>
-    <input asp-for="ImagemEmBase64" class="form-control" />
-    <span asp-validation-for="ImagemEmBase64" class="text-danger"></span>
-    <br />
+   <label for="Imagem" class="control-label">Imagem (Base64)</label>
+   <input type="file" name="Imagem" id="Imagem" onchange="exibirImagem()" class="btn btn-secondary">
+   <img id="imgPreview" src="data:image/jpeg;base64,@Model.ImagemEmBase64" class="img-responsive" width="200">
+   <span asp-validation-for="Imagem" class="text-danger"></span>
+
+
+
 
     <br />
     <input type="submit" value="Salvar Produto" class="btn btn-info" />
