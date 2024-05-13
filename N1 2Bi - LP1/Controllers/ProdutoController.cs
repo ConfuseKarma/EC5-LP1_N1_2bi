@@ -106,6 +106,22 @@ namespace N1_2Bi___LP1.Controllers
             if (produto.Preco <= 0)
                 ModelState.AddModelError("Preco", "O preço deve ser maior que zero.");
         }
+
+
+
+
+         public byte[] ConvertImageToByte(IFormFile file)
+        {
+            if (file != null)
+                using (var ms = new MemoryStream())
+                {
+                    file.CopyTo(ms);
+                    return ms.ToArray();
+                }
+            else
+                return null;
+        }
+        
     }
 
 
