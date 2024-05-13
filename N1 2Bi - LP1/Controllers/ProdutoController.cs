@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using N1_2Bi___LP1.DAO;
-using N1_2Bi___LP1.Enums;
 using N1_2Bi___LP1.Models;
 
 namespace N1_2Bi___LP1.Controllers
@@ -9,7 +8,7 @@ namespace N1_2Bi___LP1.Controllers
 
     public class ProdutoController : PadraoController<ProdutoViewModel>
     {
-        public IActionResult Index()
+        public override IActionResult Index()
         {
             ProdutoDAO dao = new ProdutoDAO();
             List<ProdutoViewModel> lista = dao.Listagem();

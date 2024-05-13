@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using N1_2Bi___LP1.DAO;
-using N1_2Bi___LP1.Enums;
 using N1_2Bi___LP1.Models;
 
 namespace N1_2Bi___LP1.Controllers
@@ -26,7 +25,6 @@ namespace N1_2Bi___LP1.Controllers
                 UsuarioViewModel usuario = new UsuarioViewModel();
                 UsuarioDAO dao = new UsuarioDAO();
                 usuario.Id = dao.ProximoId();
-                PreparaListaEstadosParaCombo();
                 return View("Form", usuario);
             }
             catch (Exception erro)
@@ -42,7 +40,6 @@ namespace N1_2Bi___LP1.Controllers
                 ViewBag.Operacao = "A";
                 UsuarioDAO dao = new UsuarioDAO();
                 UsuarioViewModel usuario = dao.Consulta(id);
-                PreparaListaEstadosParaCombo();
                 if (usuario == null)
                     return RedirectToAction("index");
                 else
@@ -62,7 +59,6 @@ namespace N1_2Bi___LP1.Controllers
                 if (ModelState.IsValid == false)
                 {
                     ViewBag.Operacao = Operacao;
-                    PreparaListaEstadosParaCombo();
                     return View("Form", usuario);
                 }
                 else
@@ -81,7 +77,7 @@ namespace N1_2Bi___LP1.Controllers
             }
         }
 
-        private void ValidaDados(UsuarioViewModel usuario, string operacao)
+        protected override void ValidaDados(UsuarioViewModel usuario, string operacao)
         {
             base.ValidaDados(usuario, operacao); // Chama o método da classe base para validar dados básicos
 
@@ -168,7 +164,7 @@ namespace N1_2Bi___LP1.Controllers
             }
         }
 
-
+        /*
         private void PreparaListaEstadosParaCombo()
         {
             var estados = Enum.GetValues(typeof(EstadosEnum)).Cast<EstadosEnum>();
@@ -184,7 +180,7 @@ namespace N1_2Bi___LP1.Controllers
 
             ViewBag.Estados = listaEstados;
         }
-
+        */
 
     }
 
