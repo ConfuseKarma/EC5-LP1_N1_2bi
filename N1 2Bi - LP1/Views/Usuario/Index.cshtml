@@ -1,0 +1,38 @@
+@model List<UsuarioViewModel>
+
+<a href="/usuario/Create" class="btn btn-success">Novo registro</a>
+<br />
+<br />
+<table class="table table-striped table-responsive">
+    <tr>
+        <th>Ações</th>
+        <th>Nome</th>
+        <th>CPF</th>
+        <th>Telefone</th>
+        <th>Email</th>
+        <th>Endereço</th>
+        <th>Número</th>
+        <th>Cidade</th>
+        <th>Estado</th>
+        <th>CEP</th>
+    </tr>
+
+    @foreach (UsuarioViewModel usuario in Model)
+    {
+        <tr>
+            <td>
+                <a href="/usuario/edit?id=@usuario.Id">✍🏻</a>
+                <a href="javascript:apagarUsuario(@usuario.Id)">💣</a>
+            </td>
+            <td>@usuario.Nome</td>
+            <td>@usuario.Cpf</td>
+            <td>@usuario.Telefone</td>
+            <td>@usuario.Email</td>
+            <td>@usuario.Endereco</td>
+            <td>@usuario.Numero</td>
+            <td>@usuario.Cidade</td>
+            <td>@usuario.Estado</td>
+            <td>@usuario.Cep</td>
+        </tr>
+    }
+</table>
