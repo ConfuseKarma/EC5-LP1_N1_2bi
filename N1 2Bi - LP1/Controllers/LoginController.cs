@@ -11,21 +11,32 @@ namespace N1_2Bi___LP1.Controllers
             return View();
             
         }
-        public IActionResult FazLogin(string usuario, string senha)
+        
+         public IActionResult FazLogin(string usuario, string senha)
         {
-            //Este é apenas um exemplo, aqui você deve consultar na sua tabela de usuários
-            //se existe esse usuário e senha
-            if (usuario == "admin" && senha == "1234")
+            using (SqlConnection conexao = ConexaoBD.GetConexao())
             {
-                HttpContext.Session.SetString("Logado", "true");
-                return RedirectToAction("index", "Home");
-            }
-            else
-            {
-                ViewBag.Erro = "Usuário ou senha inválidos!";
-                return View("Index");
+                // Query para verificar se o usuário e senha existem no banco de dados
+                string query = "SELECT COUNT(*) FROM Usuarios WHERE Usuario = @Usuario AND Senha = @Senha";
+                SqlCommand cmd = new SqlCommand(query, conexao);
+                cmd.Parameters.AddWithValue("@Usuario", usuario);
+                cmd.Parameters.AddWithValue("@Senha", senha);
+
+                int count = (int)cmd.ExecuteScalar();
+
+                if (count > 0)
+                {
+                    HttpContext.Session.SetString("Logado", "true");
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ViewBag.Erro = "Usuário ou senha inválidos!";
+                    return View("Index");
+                }
             }
         }
+        
         public IActionResult LogOff()
         {
             HttpContext.Session.Clear();
