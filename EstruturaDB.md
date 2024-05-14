@@ -28,6 +28,13 @@ CREATE TABLE Produtos (
 ```
 
 ```sql
+CREATE TABLE Pedidos (
+    Id INT PRIMARY KEY,
+    Data DATETIME NOT NULL
+);
+```
+
+```sql
 CREATE TABLE PedidoItem (
     Id INT PRIMARY KEY,
     PedidoId INT NOT NULL,
@@ -35,13 +42,6 @@ CREATE TABLE PedidoItem (
     Qtde INT NOT NULL,
     CONSTRAINT FK_PedidoItem_Pedido FOREIGN KEY (PedidoId) REFERENCES Pedidos(Id),
     CONSTRAINT FK_PedidoItem_Produto FOREIGN KEY (ProdutoId) REFERENCES Produtos(Id)
-);
-```
-
-```sql
-CREATE TABLE Pedidos (
-    Id INT PRIMARY KEY,
-    Data DATETIME NOT NULL
 );
 ```
 
