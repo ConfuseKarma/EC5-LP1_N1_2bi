@@ -14,6 +14,10 @@
             <div class="d-flex align-content-center flex-wrap">
                 <form asp-action="Salvar" class="needs-validation" enctype="multipart/form-data" novalidate>
                     <div class="row g-3">
+                            <div class="col-md-7 mb-3">
+                            <input value="@ViewBag.Operacao" type="hidden" name="Operacao">
+                            <input asp-for="Id" class="form-control" id="id" hidden>                           
+                        </div>
                         <div class="col-md-6 mb-3">
                             <label for="Nome" class="form-label">Nome</label>
                             <input asp-for="Nome" type="text" class="form-control" id="Nome" required>
