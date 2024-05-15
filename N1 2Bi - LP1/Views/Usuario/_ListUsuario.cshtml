@@ -1,0 +1,45 @@
+@model List<UsuarioViewModel>
+
+<br>
+<div class="text-center gap-3">
+    <table id="usuarioTable" class="table table-dark">
+        <thead>
+            <tr>
+                <th scope="col">Ações</th>
+                <th scope="col">Nome</th>
+                <th scope="col">CPF</th>
+                <th scope="col">Email</th>
+                <th scope="col">Telefone</th>
+                <th scope="col">Endereço</th>
+                <th scope="col">Cidade</th>
+                <th scope="col">Estado</th>
+                <th scope="col">CEP</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (var i = 0; i < Model.Count; i++)
+            {
+                <tr>
+                    <td style="width: 15%;">
+                        <div class="btn-group-vertical" style="width: 100%;">
+                            <a href="/Usuario/Edit?id=@Model[i].Id" class="btn btn-primary mb-2" style="width: 100%;">
+                                <i class="fas fa-edit"></i> Editar
+                            </a>
+                            <button type="button" onclick="apagarUsuario(@Model[i].Id)" class="btn btn-danger" style="width: 100%;">
+                                <i class="fas fa-trash" aria-hidden="true"></i> Excluir
+                            </button>
+                        </div>
+                    </td>
+                    <td class="col-md-2">@Model[i].Nome</td>
+                    <td class="col-md-2">@Model[i].Cpf</td>
+                    <td class="col-md-2">@Model[i].Email</td>
+                    <td class="col-md-2">@Model[i].Telefone</td>
+                    <td class="col-md-2">@Model[i].Endereco @Model[i].Numero</td>
+                    <td class="col-md-2">@Model[i].Cidade</td>
+                    <td class="col-md-2">@Model[i].Estado</td>
+                    <td class="col-md-2">@Model[i].Cep</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
