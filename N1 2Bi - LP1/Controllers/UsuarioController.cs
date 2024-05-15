@@ -9,72 +9,16 @@ namespace N1_2Bi___LP1.Controllers
     public class UsuarioController : PadraoController<UsuarioViewModel>
     {
         protected override bool ExigeAutenticacao { get; set; } = false;
-
-        public override IActionResult Index()
+        public UsuarioController()
         {
-            UsuarioDAO dao = new UsuarioDAO();
-            List<UsuarioViewModel> lista = dao.Listagem();
-            return View(lista);
+            DAO = new UsuarioDAO();
+            GeraProximoId = true;
         }
 
-        public override IActionResult Create()
+        public IActionResult ListarUsuario()
         {
-            try
-            {
-                ViewBag.Operacao = "I";
-                UsuarioViewModel usuario = new UsuarioViewModel();
-                UsuarioDAO dao = new UsuarioDAO();
-                usuario.Id = dao.ProximoId();
-                return View("Form", usuario);
-            }
-            catch (Exception erro)
-            {
-                return View("Error", new ErrorViewModel(erro.ToString()));
-            }
-        }
-
-        public IActionResult Edit(int id)
-        {
-            try
-            {
-                ViewBag.Operacao = "A";
-                UsuarioDAO dao = new UsuarioDAO();
-                UsuarioViewModel usuario = dao.Consulta(id);
-                if (usuario == null)
-                    return RedirectToAction("index");
-                else
-                    return View("Form", usuario);
-            }
-            catch (Exception erro)
-            {
-                return View("Error", new ErrorViewModel(erro.ToString()));
-            }
-        }
-
-        public IActionResult Salvar(UsuarioViewModel usuario, string Operacao)
-        {
-            try
-            {
-                ValidaDados(usuario, Operacao);
-                if (ModelState.IsValid == false)
-                {
-                    ViewBag.Operacao = Operacao;
-                    return View("Form", usuario);
-                }
-                else
-                {
-                    UsuarioDAO dao = new UsuarioDAO();
-                    if (Operacao == "I")
-                        dao.Inserir(usuario);
-                    else
-                        dao.Alterar(usuario);
-                    return RedirectToAction("index");
-                }
-            }
-            catch (Exception erro)
-            {
-                return View("Error", new ErrorViewModel(erro.ToString()));
-            }
+            List<UsuarioViewModel> usuario = new List<UsuarioViewModel>();
+            return View("Index", usuario);
         }
 
         protected override void ValidaDados(UsuarioViewModel usuario, string operacao)

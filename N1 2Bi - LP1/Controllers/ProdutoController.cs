@@ -8,74 +8,17 @@ namespace N1_2Bi___LP1.Controllers
 
     public class ProdutoController : PadraoController<ProdutoViewModel>
     {
-        public override IActionResult Index()
+        public ProdutoController()
         {
-            ProdutoDAO dao = new ProdutoDAO();
-            List<ProdutoViewModel> lista = dao.Listagem();
-            return View(lista);
+            DAO = new ProdutoDAO();
+            GeraProximoId = true;
         }
-
-        public IActionResult Create()
+        public IActionResult ListarProduto()
         {
-            try
-            {
-                ViewBag.Operacao = "I";
-                ProdutoViewModel produto = new ProdutoViewModel();
-                ProdutoDAO dao = new ProdutoDAO();
-                produto.Id = dao.ProximoId();
-                return View("Form", produto);
-            }
-            catch (Exception erro)
-            {
-                return View("Error", new ErrorViewModel(erro.ToString()));
-            }
+            List<ProdutoViewModel> produto = new List<ProdutoViewModel>();
+            return View("Index", produto);
         }
-
-        public IActionResult Edit(int id)
-        {
-            try
-            {
-                ViewBag.Operacao = "A";
-                ProdutoDAO dao = new ProdutoDAO();
-                ProdutoViewModel produto = dao.Consulta(id);
-                if (produto == null)
-                    return RedirectToAction("Index");
-                else
-                    return View("Form", produto);
-            }
-            catch (Exception erro)
-            {
-                return View("Error", new ErrorViewModel(erro.ToString()));
-            }
-        }
-
-        public IActionResult Salvar(ProdutoViewModel produto, string Operacao)
-        {
-            try
-            {
-                ValidaDados(produto, Operacao);
-                if (ModelState.IsValid == false)
-                {
-                    ViewBag.Operacao = Operacao;
-                    return View("Form", produto);
-                }
-                else
-                {
-                    ProdutoDAO dao = new ProdutoDAO();
-                    if (Operacao == "I")
-                        dao.Inserir(produto);
-                    else
-                        dao.Alterar(produto);
-                    return RedirectToAction("Index");
-                }
-            }
-            catch (Exception erro)
-            {
-                return View("Error", new ErrorViewModel(erro.ToString()));
-            }
-        }
-
-        private void ValidaDados(ProdutoViewModel produto, string operacao)
+        protected override void ValidaDados(ProdutoViewModel produto, string operacao)
         {
             base.ValidaDados(produto, operacao); // Chama o método da classe base para validar dados básicos
 

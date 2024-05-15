@@ -18,9 +18,9 @@ namespace N1_2Bi___LP1.DAO
         protected abstract T MontaModel(DataRow registro);
         protected abstract void SetTabela();
 
-        public virtual int Insert(T model)
+        public virtual void Insert(T model)
         {
-            return HelperDAO.ExecutaProc("spInsert_" + Tabela, CriaParametros(model), ChaveIdentity);
+            HelperDAO.ExecutaProc("spInsert_" + Tabela, CriaParametros(model));
         }
         public virtual void Update(T model)
         {
@@ -70,7 +70,6 @@ namespace N1_2Bi___LP1.DAO
                 lista.Add(MontaModel(registro));
             return lista;
         }
-
         protected bool ChaveIdentity { get; set; } = false;
         
     }
