@@ -1,0 +1,38 @@
+@model List<ProdutoViewModel>
+
+<div class="text-center gap-3">
+    
+    <table id="produtoTable" class="table table-dark">
+        <thead>
+            <tr>
+                <th scope="col">Actions</th>
+                <th scope="col">Foto</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Preço</th>
+                <th scope="col">Descrição</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var produto in Model)
+            {
+                <tr>
+                    <td class="col-md-3">
+                        <a href="/produto/Edit?id=@produto.Id" class="btn btn-primary"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                        <a href="javascript:apagarProduto(@produto.Id)" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                    </td>
+                    <td class="col-md-3"> <img src="data:image/jpeg;base64,@produto.ImagemEmBase64" alt="Imagem do Produto" style="max-width: 100px; max-height: 100px;"></td>
+                    <td class="col-md-2">@produto.Nome</td>
+                    <td class="col-md-2">@produto.Preco</td>
+                    <td class="col-md-2">@produto.Descricao</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<script>
+    function apagarProduto(id) {
+        if (confirm('Confirma a exclusão do registro?'))
+            location.href = 'Produto/Delete?id=' + id;
+    }
+</script>
