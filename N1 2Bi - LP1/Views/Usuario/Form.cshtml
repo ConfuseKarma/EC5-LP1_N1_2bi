@@ -5,94 +5,144 @@
     ViewData["Title"] = "Cadastro de Usuário";
 }
 
-
-
 <div class="container content-fluid mt-5 row-gap-5">
-    <div class="row mt-5 gx-3"> 
+    <div class="row mt-5 gx-3">
         <div class="col-md-6">
             <h1 class="display-2 fw-semibold mb-5">Novo Usuário</h1>
             <div class="d-flex align-content-center flex-wrap">
                 <form asp-action="Save" class="needs-validation" enctype="multipart/form-data" novalidate>
                     <div class="row g-3">
-                            <div class="col-md-7 mb-3">
+                        <div class="col-md-7 mb-3">
                             <input value="@ViewBag.Operacao" type="hidden" name="Operacao">
-                            <input asp-for="Id" class="form-control" id="id" hidden>                           
+                            <input asp-for="Id" class="form-control" id="id" hidden>
                         </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="Nome" class="form-label">Nome</label>
-                            <input asp-for="Nome" type="text" class="form-control" id="Nome" required>
-                            <div class="valid-feedback">
-                                Parece bom!
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="Cpf" class="form-label">CPF</label>
-                            <input asp-for="Cpf" type="text" class="form-control" id="Cpf" required>
-                            <div class="valid-feedback">
-                                Parece bom!
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="Email" class="form-label">E-mail</label>
-                            <input asp-for="Email" type="email" class="form-control" id="Email" required>
-                            <div class="valid-feedback">
-                                Parece bom!
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="Senha" class="form-label">Senha</label>
-                            <input asp-for="Senha" type="password" class="form-control" id="Senha" required>
-                            <div class="valid-feedback">
-                                Parece bom!
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="Cep" class="form-label">CEP</label>
-                            <input asp-for="Cep" type="text" class="form-control" id="Cep" required>
-                            <div class="valid-feedback">
-                                Parece bom!
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="Telefone" class="form-label">Telefone</label>
-                            <input asp-for="Telefone" type="text" class="form-control" id="Telefone" required>
-                            <div class="valid-feedback">
-                                Parece bom!
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="Endereco" class="form-label">Endereço</label>
-                            <input asp-for="Endereco" type="text" class="form-control" id="Endereco" required>
-                            <div class="valid-feedback">
-                                Parece bom!
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="Numero" class="form-label">Número</label>
-                            <input asp-for="Numero" type="text" class="form-control" id="Numero" required>
-                            <div class="valid-feedback">
-                                Parece bom!
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="Cidade" class="form-label">Cidade</label>
-                            <input asp-for="Cidade" type="text" class="form-control" id="Cidade" required>
-                            <div class="valid-feedback">
-                                Parece bom!
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="Estado" class="form-label">Estado</label>
-                            <input asp-for="Estado" type="text" class="form-control" id="Estado" required>
-                            <div class="valid-feedback">
-                                Parece bom!
-                            </div>
-                        </div>
-                        
 
-                        <div class="col-md-12 mb-3">
+                        <div class="col-md-6">
+                            <label for="Nome" class="form-label">Nome</label>
+                            <div class="input-group has-validation">
+                                <input asp-for="Nome" type="text" class="form-control" id="Nome" required>
+                                <div class="valid-feedback">
+                                    Parece bom!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Por favor, forneça um nome válido.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="Cpf" class="form-label">CPF</label>
+                            <div class="input-group has-validation">
+                                <input asp-for="Cpf" type="text" class="form-control" id="Cpf" required>
+                                <div class="valid-feedback">
+                                    Parece bom!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Por favor, forneça um CPF válido.
+                                </div>
+                            </div>
+                        </div>
+
+                    <div class="col-md-6">
+                            <label for="Email" class="form-label">E-mail</label>
+                            <div class="input-group has-validation">
+                                <span class="input-group-text" id="spanEmail">&#x00040;</span>
+                                <input asp-for="Email" type="text" class="form-control" id="Email" aria-describedby="inputGroupPrepend" required>
+                                <div class="invalid-feedback">
+                                    Please, inform the email for contact.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="Senha" class="form-label">Senha</label>
+                            <div class="input-group has-validation">
+                                <input asp-for="Senha" type="password" class="form-control" id="Senha" required>
+                                <div class="valid-feedback">
+                                    Parece bom!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Por favor, forneça uma senha válida.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="Cep" class="form-label">CEP</label>
+                            <div class="input-group has-validation">
+                                <input asp-for="Cep" type="text" class="form-control" id="Cep" required>
+                                <div class="valid-feedback">
+                                    Parece bom!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Por favor, forneça um CEP válido.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="Telefone" class="form-label">Telefone</label>
+                            <div class="input-group has-validation">
+                                <input asp-for="Telefone" type="text" class="form-control" id="Telefone" required>
+                                <div class="valid-feedback">
+                                    Parece bom!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Por favor, forneça um número de telefone válido.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="Endereco" class="form-label">Endereço</label>
+                            <div class="input-group has-validation">
+                                <input asp-for="Endereco" type="text" class="form-control" id="Endereco" required>
+                                <div class="valid-feedback">
+                                    Parece bom!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Por favor, forneça um endereço válido.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="Numero" class="form-label">Número</label>
+                            <div class="input-group has-validation">
+                                <input asp-for="Numero" type="text" class="form-control" id="Numero" required>
+                                <div class="valid-feedback">
+                                    Parece bom!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Por favor, forneça um número válido.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="Cidade" class="form-label">Cidade</label>
+                            <div class="input-group has-validation">
+                                <input asp-for="Cidade" type="text" class="form-control" id="Cidade" required>
+                                <div class="valid-feedback">
+                                    Parece bom!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Por favor, forneça uma cidade válida.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="Estado" class="form-label">Estado</label>
+                            <div class="input-group has-validation">
+                                <input asp-for="Estado" type="text" class="form-control" id="Estado" required>
+                                <div class="valid-feedback">
+                                    Parece bom!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Por favor, forneça um estado válido.
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-7 mb-3">
                             <button type="submit" value="Salvar dados" class="rounded-pill btn btn-lg btn-info mr-3">Registrar</button>
                         </div>
+
                     </div>
                 </form>
             </div>
@@ -102,12 +152,3 @@
         </div>
     </div>
 </div>
-<script>
-    function exibirImagem() {
-        var oFReader = new FileReader();
-        oFReader.readAsDataURL(document.getElementById("Imagem").files[0]);
-        oFReader.onload = function (oFREvent) {
-            document.getElementById("imgPreview").src = oFREvent.target.result;
-        };
-    }
-</script>
