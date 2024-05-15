@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using N1_2Bi___LP1.DAO;
 using N1_2Bi___LP1.Models;
+using System.Data;
 
 namespace N1_2Bi___LP1.Controllers
 {
@@ -107,6 +108,29 @@ namespace N1_2Bi___LP1.Controllers
                 return cpf.EndsWith(digito);
             }
         }
+
+
+        public IActionResult ObtemDadosConsultaAvancada(string nomeUsuario,
+                                                string cpf,
+                                                int tipo)
+        {
+            try
+            {
+                UsuarioDAO dao = new UsuarioDAO();
+                if (string.IsNullOrEmpty(nomeUsuario))
+                    nomeUsuario = "";
+                if (string.IsNullOrEmpty(cpf))
+                    cpf = "";
+
+                List<UsuarioViewModel> lista = dao.ConsultaAvancadaUsuario(nomeUsuario, cpf, tipo);
+                return PartialView("_ListUsuario", lista);
+            }
+            catch (Exception erro)
+            {
+                return Json(new { erro = true, msg = erro.Message });
+            }
+        }
+
 
         /*
         private void PreparaListaEstadosParaCombo()

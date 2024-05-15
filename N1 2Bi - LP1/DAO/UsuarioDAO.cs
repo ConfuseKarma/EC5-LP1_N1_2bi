@@ -30,16 +30,16 @@ namespace N1_2Bi___LP1.DAO
         {
             UsuarioViewModel usuario = new UsuarioViewModel();
             usuario.Id = Convert.ToInt32(registro["Id"]);
-            usuario.Nome = registro["nome"].ToString();
-            usuario.Cpf = registro["cpf"].ToString();
-            usuario.Telefone = registro["telefone"].ToString();
-            usuario.Email = registro["email"].ToString();
-            usuario.Endereco = registro["endereco"].ToString();
-            usuario.Numero = registro["numero"].ToString();
-            usuario.Senha = registro["senha"].ToString();
-            usuario.Cidade = registro["cidade"].ToString();
-            usuario.Estado = registro["estado"].ToString();
-            usuario.Cep = registro["cep"].ToString();
+            usuario.Nome = registro["Nome"].ToString();
+            usuario.Cpf = registro["Cpf"].ToString();
+            usuario.Telefone = registro["Telefone"].ToString();
+            usuario.Email = registro["Email"].ToString();
+            usuario.Senha = registro["Senha"].ToString();
+            usuario.Endereco = registro["Endereco"].ToString();
+            usuario.Numero = registro["Numero"].ToString();
+            usuario.Cidade = registro["Cidade"].ToString();
+            usuario.Estado = registro["Estado"].ToString();
+            usuario.Cep = registro["Cep"].ToString();
 
             return usuario;
         }
@@ -70,7 +70,25 @@ namespace N1_2Bi___LP1.DAO
     {
         Tabela = "Usuarios";
     }
-}
 
+
+        public List<UsuarioViewModel> ConsultaAvancadaUsuario(string nomeUsuario,
+                                                     string cpf,
+                                                     int tipo)
+        {
+            SqlParameter[] parametros = {
+              new SqlParameter("nomeCliente", nomeUsuario),
+              new SqlParameter("cnpj", cpf),
+              new SqlParameter("tipo", tipo)  };
+
+            var tabela = HelperDAO.ExecutaProcSelect("spConsultaAvancadaUsuarios", parametros);
+            var lista = new List<UsuarioViewModel>();
+            foreach (DataRow dr in tabela.Rows)
+                lista.Add(MontaModel(dr));
+            return lista;
+        }
+
+
+    }
 
 }
