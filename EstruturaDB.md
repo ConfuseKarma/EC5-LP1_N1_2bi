@@ -56,6 +56,7 @@ CREATE PROCEDURE spInsert_Usuarios
     @telefone VARCHAR(20),
     @email VARCHAR(100),
     @endereco VARCHAR(MAX),
+    @numero VARCHAR(10),
     @cidade VARCHAR(MAX),
     @estado VARCHAR(2),
     @cep VARCHAR(10),
