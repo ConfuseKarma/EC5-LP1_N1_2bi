@@ -56,6 +56,7 @@ CREATE PROCEDURE spInsert_Usuarios
     @telefone VARCHAR(20),
     @email VARCHAR(100),
     @endereco VARCHAR(MAX),
+    @numero VARCHAR(10),
     @cidade VARCHAR(MAX),
     @estado VARCHAR(2),
     @cep VARCHAR(10),
@@ -64,11 +65,12 @@ CREATE PROCEDURE spInsert_Usuarios
 AS
 BEGIN
     INSERT INTO Usuarios
-    (id, nome, cpf, telefone, email, endereco, cidade, estado, cep, senha)
+    (id, nome, cpf, telefone, email, endereco, numero, cidade, estado, cep, senha)
     VALUES
-    (@id, @nome, @cpf, @telefone, @email, @endereco, @cidade, @estado, @cep, @senha);
+    (@id, @nome, @cpf, @telefone, @email, @endereco, @numero, @cidade, @estado, @cep, @senha);
 END
 GO
+
 
 ```
 
