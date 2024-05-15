@@ -26,8 +26,18 @@ namespace N1_2Bi___LP1.DAO
             produto.Nome = registro["nome"].ToString();
             produto.Descricao = registro["descricao"].ToString();
             produto.Preco = Convert.ToDecimal(registro["preco"]);
+
+            if (registro.Table.Columns.Contains("imagem") && registro["imagem"] != DBNull.Value)
+            {
+                // Aqui você converte a imagem em byte[]
+                produto.ImagemEmBase64 = Convert.ToBase64String((byte[])registro["imagem"]);
+            }
+
+            // Se houver necessidade de mais campos, você pode adicioná-los aqui
+
             return produto;
         }
+
 
         public void Inserir(ProdutoViewModel produto)
         {
@@ -52,6 +62,17 @@ namespace N1_2Bi___LP1.DAO
         {
             Tabela = "Produtos";
         }
+
+        public List<ProdutoViewModel> ConsultaAvancadaProduto(string nome)
+        {
+            SqlParameter[] parametros = {new SqlParameter("nome", nome)  };
+            var tabela = HelperDAO.ExecutaProcSelect("spConsultaAvancadaProdutosPorNome", parametros);
+            var lista = new List<ProdutoViewModel>();
+            foreach (DataRow dr in tabela.Rows)
+                lista.Add(MontaModel(dr));
+            return lista;
+        }
+
     }
 
 }

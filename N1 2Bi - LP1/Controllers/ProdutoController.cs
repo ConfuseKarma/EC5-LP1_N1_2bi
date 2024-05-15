@@ -8,6 +8,9 @@ namespace N1_2Bi___LP1.Controllers
 
     public class ProdutoController : PadraoController<ProdutoViewModel>
     {
+
+       // protected override bool ExigeAutenticacao { get; set; } = false;
+
         public ProdutoController()
         {
             DAO = new ProdutoDAO();
@@ -36,14 +39,16 @@ namespace N1_2Bi___LP1.Controllers
 
             // Imagem será obrigatória apenas na inclusão.
             // Na alteração iremos considerar a que já estava salva.
-            if (operacao == "I" && produto.ImagemEmBase64 == null)
+            if (operacao == "I" && string.IsNullOrEmpty(produto.ImagemEmBase64))
                 ModelState.AddModelError("ImagemEmBase64", "Escolha uma imagem.");
-            if (!string.IsNullOrEmpty(produto.ImagemEmBase64) && produto.ImagemEmBase64.Length / 1024 / 1024 >= 2)
+
+            // Verifica o tamanho da imagem, caso esteja presente
+            if (!string.IsNullOrEmpty(produto.ImagemEmBase64) && Convert.FromBase64String(produto.ImagemEmBase64).Length / 1024 / 1024 >= 2)
                 ModelState.AddModelError("ImagemEmBase64", "Imagem limitada a 2 MB.");
         }
 
 
-         public byte[] ConvertImageToByte(IFormFile file)
+        public byte[] ConvertImageToByte(IFormFile file)
         {
             if (file != null)
                 using (var ms = new MemoryStream())
@@ -54,7 +59,26 @@ namespace N1_2Bi___LP1.Controllers
             else
                 return null;
         }
-        
+
+        public IActionResult ObtemDadosConsultaAvancada(string nome)
+        {
+            try
+            {
+                ProdutoDAO dao = new ProdutoDAO(); 
+                if (string.IsNullOrEmpty(nome))
+                    nome = "";
+
+                List<ProdutoViewModel> lista = dao.ConsultaAvancadaProduto(nome); 
+                return PartialView("_ListProd", lista); 
+            }
+            catch (Exception erro)
+            {
+                return Json(new { erro = true, msg = erro.Message });
+            }
+        }
+
+
+
     }
 
 
