@@ -15,7 +15,7 @@
                     <h2 class="display-5 fw-lighter">please complete the form.</h2>
                 </div>
                 <div class="d-flex gap-3">
-                    <form class="w-100">
+                    <form method="post" asp-controller="Login" asp-action="FazLogin" class="w-100">
                         <div class="form-group mb-3">
                             <label for="email"><span class="text-info">E-mail</span></label>
                             <input type="email" class="form-control" id="email" name="email" placeholder="Digite seu e-mail">
@@ -28,13 +28,7 @@
                         <div class="mb-3">
                             <button type="submit" class="rounded-pill btn btn-lg btn-outline-info mr-3">Entrar</button>
                         </div>
-
-                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="FazLogin">Entrar</a>
-                        </li>
-
                     </form>
-
                 </div>
             </div>
         </div>

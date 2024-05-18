@@ -14,14 +14,14 @@ namespace N1_2Bi___LP1.Controllers
             
         }
         
-         public IActionResult FazLogin(string usuario, string senha)
+         public IActionResult FazLogin(string email, string senha)
         {
             using (SqlConnection conexao = ConexaoBD.GetConexao())
             {
                 // Query para verificar se o usuário e senha existem no banco de dados
-                string query = "SELECT COUNT(*) FROM Usuarios WHERE Usuario = @Usuario AND Senha = @Senha";
+                string query = "SELECT COUNT(*) FROM Usuarios WHERE Email = @Email AND Senha = @Senha";
                 SqlCommand cmd = new SqlCommand(query, conexao);
-                cmd.Parameters.AddWithValue("@Usuario", usuario);
+                cmd.Parameters.AddWithValue("@Email", email);
                 cmd.Parameters.AddWithValue("@Senha", senha);
 
                 int count = (int)cmd.ExecuteScalar();
