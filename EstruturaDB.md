@@ -23,7 +23,7 @@ CREATE TABLE Produtos (
     Nome NVARCHAR(255) NOT NULL,
     Preco DECIMAL(18, 2) NOT NULL,
     Descricao NVARCHAR(MAX),
-    ImagemEmBase64 NVARCHAR(MAX)
+    Imagem VARBINARY(MAX) NULL
 );
 ```
 
