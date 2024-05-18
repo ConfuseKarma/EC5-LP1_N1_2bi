@@ -20,7 +20,7 @@ namespace N1_2Bi___LP1.Controllers
         public IActionResult ListarProduto()
         {
             List<ProdutoViewModel> produto = new List<ProdutoViewModel>();
-            return View("Index", produto);
+            return View("ConsultaAvancada", produto);
         }
 
         public byte[] ConvertImageToByte(IFormFile file)

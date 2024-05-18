@@ -1,0 +1,28 @@
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<fieldset id="areaFiltro" class="form-group">
+    <legend>Consulta avançada de Produtos</legend>
+    <div class="row">
+        <div class="col-lg-3">
+            Nome<br />
+            <input type="text" id="nome" class="form-control" />
+        </div>
+        <div class="col-lg-2">
+            Faixa de Preço <br />
+            <input type="number" id="precoMenor" class="form-control" />
+        </div>
+        <div class="col-lg-2">
+            <br />
+            <input type="number" id="precoMaior" class="form-control" />
+        </div>
+        <div class="col-lg-1">
+            <br />
+            <input type="button" id="btnFiltro" class="btn btn-success" value="Aplicar"
+                   onclick="aplicaFiltroConsultaAvancada()" />
+        </div>
+    </div>
+</fieldset>
+<div id="resultadoConsulta" class="table-responsive">
+</div>
+
