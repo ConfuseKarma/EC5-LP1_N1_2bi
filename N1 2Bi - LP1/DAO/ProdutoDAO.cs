@@ -39,11 +39,6 @@ namespace N1_2Bi___LP1.DAO
         }
 
 
-        public override void Insert(ProdutoViewModel produto)
-        {
-            HelperDAO.ExecutaProc("spInsert_Produtos", CriaParametros(produto));
-        }
-
         public override void Update(ProdutoViewModel produto)
         {
             HelperDAO.ExecutaProc("spUpdate_Produtos", CriaParametros(produto));
