@@ -24,7 +24,14 @@
             <td>@produto.Nome</td>
             <td>@produto.Preco.ToString("C")</td>
             <td>@produto.Descricao</td>
-            <td><img src="data:image;base64,@produto.Imagem" alt="Imagem do Produto" width="100" /></td>
+            <td class="col-md-3"> <img src="data:image/jpeg;base64,@produto.ImagemEmBase64" alt="Imagem do Funcionário" style="max-width: 100px; max-height: 100px;"></td>
         </tr>
     }
 </table>
+<script>
+    function apagarProduto(id) {
+        if (confirm('Confirma a exclusão do registro?'))
+            location.href = 'Produto/Delete?id=' + id;
+    }
+</script>
+

@@ -49,15 +49,6 @@ namespace N1_2Bi___LP1.DAO
             HelperDAO.ExecutaProc("spUpdate_Produtos", CriaParametros(produto));
         }
 
-        public override void Delete(int id)
-        {
-            var p = new SqlParameter[]
-            {
-            new SqlParameter("id", id)
-            };
-            HelperDAO.ExecutaProc("spDelete_Produtos", p);
-        }
-
         protected override void SetTabela()
         {
             Tabela = "Produtos";
