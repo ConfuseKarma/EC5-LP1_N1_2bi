@@ -15,6 +15,7 @@ namespace N1_2Bi___LP1.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.Logado = HelperControllers.VerificaUserLogado(HttpContext.Session);
             return View();
         }
 

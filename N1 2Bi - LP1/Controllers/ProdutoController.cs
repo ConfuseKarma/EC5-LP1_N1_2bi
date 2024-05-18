@@ -10,7 +10,7 @@ namespace N1_2Bi___LP1.Controllers
     public class ProdutoController : PadraoController<ProdutoViewModel>
     {
 
-        protected override bool ExigeAutenticacao { get; set; } = false;
+        protected override bool ExigeAutenticacao { get; set; } = true;
 
         public ProdutoController()
         {
