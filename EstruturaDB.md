@@ -120,6 +120,32 @@ GO
 
 ```
 
+```sql
+
+CREATE PROCEDURE [dbo].[spConsultaAvancadaUsuarios]
+(
+    @nome VARCHAR(MAX),
+    @cpf VARCHAR(14)
+)
+AS
+BEGIN
+    IF @cpf = ''
+    BEGIN
+        SELECT *
+        FROM Usuarios
+        WHERE Nome LIKE '%' + @nome + '%';
+    END
+    ELSE
+    BEGIN
+        SELECT *
+        FROM Usuarios
+        WHERE Nome LIKE '%' + @nome + '%' AND CPF = @cpf;
+    END
+END
+
+
+```
+
 ### Stored Procedures de Produtos
 
 ```sql
@@ -159,6 +185,32 @@ BEGIN
     WHERE Id = @Id
 END
 GO
+```
+
+```sql
+
+CREATE PROCEDURE [dbo].[spConsultaAvancadaProdutos]
+(
+    @nome NVARCHAR(255),
+    @preco DECIMAL(18, 2)
+)
+AS
+BEGIN
+    IF @preco IS NULL
+    BEGIN
+        SELECT *
+        FROM Produtos
+        WHERE Nome LIKE '%' + @nome + '%';
+    END
+    ELSE
+    BEGIN
+        SELECT *
+        FROM Produtos
+        WHERE Nome LIKE '%' + @nome + '%' AND Preco <= @preco;
+    END
+END
+
+
 ```
 
 ## Stored Procedures de Reviews
