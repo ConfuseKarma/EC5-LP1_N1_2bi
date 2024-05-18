@@ -115,14 +115,14 @@ CREATE PROCEDURE spInsert_Produtos
     @Nome NVARCHAR(255),
     @Preco DECIMAL(18, 2),
     @Descricao NVARCHAR(MAX),
-    @ImagemEmBase64 NVARCHAR(MAX)
+    @Imagem VARBINARY(MAX) NULL
 )
 AS
 BEGIN
     INSERT INTO Produtos
-    (Id, Nome, Preco, Descricao, ImagemEmBase64)
+    (Id, Nome, Preco, Descricao, Imagem)
     VALUES
-    (@Id, @Nome, @Preco, @Descricao, @ImagemEmBase64)
+    (@Id, @Nome, @Preco, @Descricao, @Imagem)
 END
 GO
 ```
@@ -133,7 +133,7 @@ CREATE PROCEDURE spUpdate_Produtos
     @Nome NVARCHAR(255),
     @Preco DECIMAL(18, 2),
     @Descricao NVARCHAR(MAX),
-    @ImagemEmBase64 NVARCHAR(MAX)
+    Imagem VARBINARY(MAX) NULL
 )
 AS
 BEGIN
@@ -141,7 +141,7 @@ BEGIN
     Nome = @Nome,
     Preco = @Preco,
     Descricao = @Descricao,
-    ImagemEmBase64 = @ImagemEmBase64
+    Imagem = @Imagem
     WHERE Id = @Id
 END
 GO
