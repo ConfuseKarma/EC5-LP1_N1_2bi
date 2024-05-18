@@ -45,6 +45,20 @@ CREATE TABLE PedidoItem (
 );
 ```
 
+```sql
+CREATE TABLE Reviews (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    ProdutoId INT NOT NULL, 
+    UsuarioId INT NOT NULL, 
+    Pontuacao INT CHECK (Pontuacao BETWEEN 1 AND 5),
+    Descricao NVARCHAR(MAX),   
+    DataAvaliacao DATETIME NOT NULL DEFAULT GETDATE(), 
+    FOREIGN KEY (ProdutoId) REFERENCES Produtos(Id),
+    FOREIGN KEY (UsuarioId) REFERENCES Usuarios(Id) 
+);
+
+```
+
 ### Stored Procedures de Usuarios
 
 ```sql
