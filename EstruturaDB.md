@@ -133,7 +133,7 @@ CREATE PROCEDURE spUpdate_Produtos
     @Nome NVARCHAR(255),
     @Preco DECIMAL(18, 2),
     @Descricao NVARCHAR(MAX),
-    Imagem VARBINARY(MAX) NULL
+    @Imagem VARBINARY(MAX) NULL
 )
 AS
 BEGIN
