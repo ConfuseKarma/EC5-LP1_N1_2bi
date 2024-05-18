@@ -21,6 +21,19 @@ namespace N1_2Bi___LP1.Controllers
             List<ProdutoViewModel> produto = new List<ProdutoViewModel>();
             return View("Index", produto);
         }
+
+        public byte[] ConvertImageToByte(IFormFile file)
+        {
+            if (file != null)
+                using (var ms = new MemoryStream())
+                {
+                    file.CopyTo(ms);
+                    return ms.ToArray();
+                }
+            else
+                return null;
+        }
+
         protected override void ValidaDados(ProdutoViewModel produto, string operacao)
         {
             base.ValidaDados(produto, operacao); // Chama o método da classe base para validar dados básicos
@@ -40,24 +53,11 @@ namespace N1_2Bi___LP1.Controllers
             // Imagem será obrigatória apenas na inclusão.
             // Na alteração iremos considerar a que já estava salva.
             if (operacao == "I" && string.IsNullOrEmpty(produto.ImagemEmBase64))
-                ModelState.AddModelError("ImagemEmBase64", "Escolha uma imagem.");
+                ModelState.AddModelError("Imagem", "Escolha uma imagem.");
 
             // Verifica o tamanho da imagem, caso esteja presente
             if (!string.IsNullOrEmpty(produto.ImagemEmBase64) && Convert.FromBase64String(produto.ImagemEmBase64).Length / 1024 / 1024 >= 2)
-                ModelState.AddModelError("ImagemEmBase64", "Imagem limitada a 2 MB.");
-        }
-
-
-        public byte[] ConvertImageToByte(IFormFile file)
-        {
-            if (file != null)
-                using (var ms = new MemoryStream())
-                {
-                    file.CopyTo(ms);
-                    return ms.ToArray();
-                }
-            else
-                return null;
+                ModelState.AddModelError("Imagem", "Imagem limitada a 2 MB.");
         }
 
         public IActionResult ObtemDadosConsultaAvancada(string nome)

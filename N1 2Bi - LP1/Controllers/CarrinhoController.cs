@@ -46,7 +46,7 @@ namespace N1_2Bi___LP1.Controllers
                     carrinhoModel.Quantidade = 0;
                 }
                 // preenche a imagem
-                carrinhoModel.ImagemEmBase64 = modelProduto.ImagemEmBase64;
+                carrinhoModel.Imagem = modelProduto.ImagemEmBase64;
                 return View(carrinhoModel);
             }
             catch (Exception erro)
@@ -110,7 +110,7 @@ namespace N1_2Bi___LP1.Controllers
                 foreach (var item in carrinho)
                 {
                     var cid = dao.Consulta(item.ProdutoId);
-                    item.ImagemEmBase64 = cid.ImagemEmBase64;
+                    item.Imagem = cid.ImagemEmBase64;
                 }
                 return View(carrinho);
             }

@@ -7,7 +7,7 @@ using System.Diagnostics;
 namespace N1_2Bi___LP1.DAO
 {
     public class UsuarioDAO : PadraoDAO<UsuarioViewModel>
-{
+    {
         protected override SqlParameter[] CriaParametros(UsuarioViewModel model)
         {
             SqlParameter[] parametros = new SqlParameter[11]; // Agora são 11 parâmetros
@@ -48,28 +48,28 @@ namespace N1_2Bi___LP1.DAO
 
 
         public void Inserir(UsuarioViewModel usuario)
-    {
-        HelperDAO.ExecutaProc("spInsert_Usuarios", CriaParametros(usuario));
-    }
-
-    public void Alterar(UsuarioViewModel usuario)
-    {
-        HelperDAO.ExecutaProc("spUpdate_Usuarios", CriaParametros(usuario));
-    }
-
-    public void Excluir(int id)
-    {
-        var p = new SqlParameter[]
         {
-            new SqlParameter("id", id)
-        };
-        HelperDAO.ExecutaProc("spDelete", p);
-    }
+            HelperDAO.ExecutaProc("spInsert_Usuarios", CriaParametros(usuario));
+        }
 
-    protected override void SetTabela()
-    {
-        Tabela = "Usuarios";
-    }
+        public void Alterar(UsuarioViewModel usuario)
+        {
+            HelperDAO.ExecutaProc("spUpdate_Usuarios", CriaParametros(usuario));
+        }
+
+        public void Excluir(int id)
+        {
+            var p = new SqlParameter[]
+            {
+                new SqlParameter("id", id)
+            };
+            HelperDAO.ExecutaProc("spDelete", p);
+        }
+
+        protected override void SetTabela()
+        {
+            Tabela = "Usuarios";
+        }
 
 
         public List<UsuarioViewModel> ConsultaAvancadaUsuario(string nomeUsuario,

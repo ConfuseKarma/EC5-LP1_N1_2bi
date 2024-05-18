@@ -10,7 +10,7 @@
     <div class="col-md-4">
         <form asp-action="AdicionarCarrinho">
             <input asp-for="ProdutoId" hidden />
-            <img id="imgPreview" src="data:image/jpeg;base64,@Model.ImagemEmBase64" class="img-responsive" width="200">
+            <img id="imgPreview" src="data:image/jpeg;base64,@Model.Imagem" class="img-responsive" width="200">
             <br />
             <strong>Produto : @Model.ProdutoId - @Model.Nome</strong>
             <br />

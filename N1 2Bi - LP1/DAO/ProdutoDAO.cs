@@ -10,11 +10,12 @@ namespace N1_2Bi___LP1.DAO
     {
         protected override SqlParameter[] CriaParametros(ProdutoViewModel model)
         {
-            SqlParameter[] parametros = new SqlParameter[4];
+            SqlParameter[] parametros = new SqlParameter[5];
             parametros[0] = new SqlParameter("id", model.Id);
             parametros[1] = new SqlParameter("nome", model.Nome);
             parametros[2] = new SqlParameter("descricao", model.Descricao);
             parametros[3] = new SqlParameter("preco", model.Preco);
+            parametros[4] = new SqlParameter("preco", model.ImagemEmBase64);
 
             return parametros;
         }
@@ -30,16 +31,15 @@ namespace N1_2Bi___LP1.DAO
             if (registro.Table.Columns.Contains("imagem") && registro["imagem"] != DBNull.Value)
             {
                 // Aqui você converte a imagem em byte[]
-                produto.ImagemEmBase64 = Convert.ToBase64String((byte[])registro["imagem"]);
+                produto.ImagemEmBase64;
             }
-
             // Se houver necessidade de mais campos, você pode adicioná-los aqui
 
             return produto;
         }
 
 
-        public void Inserir(ProdutoViewModel produto)
+        public override void Inserir(ProdutoViewModel produto)
         {
             HelperDAO.ExecutaProc("spInsert_Produtos", CriaParametros(produto));
         }
