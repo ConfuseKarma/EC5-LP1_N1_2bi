@@ -161,6 +161,53 @@ END
 GO
 ```
 
+## Stored Procedures de Reviews
+
+```sql
+CREATE PROCEDURE spInsert_Review
+(
+    @ProdutoId INT,
+    @UsuarioId INT,
+    @Pontuacao INT,
+    @Descricao NVARCHAR(MAX)
+)
+AS
+BEGIN
+    -- Insere a nova review na tabela Reviews
+    INSERT INTO Reviews
+    (ProdutoId, UsuarioId, Pontuacao, Descricao, DataAvaliacao)
+    VALUES
+    (@ProdutoId, @UsuarioId, @Pontuacao, @Descricao, GETDATE());
+END
+GO
+```
+
+```sql
+CREATE PROCEDURE spUpdate_Review
+(
+    @Id INT,
+    @ProdutoId INT,
+    @UsuarioId INT,
+    @Pontuacao INT,
+    @Descricao NVARCHAR(MAX)
+)
+AS
+BEGIN
+    -- Atualiza os dados da review na tabela Reviews
+    UPDATE Reviews
+    SET
+        ProdutoId = @ProdutoId,
+        UsuarioId = @UsuarioId,
+        Pontuacao = @Pontuacao,
+        Descricao = @Descricao,
+        DataAvaliacao = GETDATE()  -- Atualiza a data de avaliação para a data atual
+    WHERE Id = @Id;
+END
+GO
+
+```
+
+
 ## Stored Procedures Genéricas
 
 ### sp's Genéricas
