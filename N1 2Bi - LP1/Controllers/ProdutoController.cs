@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using N1_2Bi___LP1.DAO;
 using N1_2Bi___LP1.Models;
+using System.Reflection;
 
 namespace N1_2Bi___LP1.Controllers
 {
@@ -50,14 +51,24 @@ namespace N1_2Bi___LP1.Controllers
             if (produto.Preco <= 0)
                 ModelState.AddModelError("Preco", "O preço deve ser maior que zero.");
 
-            // Imagem será obrigatória apenas na inclusão.
-            // Na alteração iremos considerar a que já estava salva.
-            if (operacao == "I" && string.IsNullOrEmpty(produto.ImagemEmBase64))
+            if (produto.Imagem == null && operacao == "I")
                 ModelState.AddModelError("Imagem", "Escolha uma imagem.");
+            if (produto.Imagem != null && produto.Imagem.Length / 1024 / 1024 >= 2)
+                ModelState.AddModelError("Imagem", "Imagem limitada a 2 mb.");
 
-            // Verifica o tamanho da imagem, caso esteja presente
-            if (!string.IsNullOrEmpty(produto.ImagemEmBase64) && Convert.FromBase64String(produto.ImagemEmBase64).Length / 1024 / 1024 >= 2)
-                ModelState.AddModelError("Imagem", "Imagem limitada a 2 MB.");
+            if (ModelState.IsValid)
+            {
+                //na alteração, se não foi informada a imagem, iremos manter a que já estava salva.
+                if (operacao == "A" && produto.Imagem == null)
+                {
+                    ProdutoViewModel func = DAO.Consulta(produto.Id);
+                    produto.ImagemEmByte = func.ImagemEmByte;
+                }
+                else
+                {
+                    produto.ImagemEmByte = ConvertImageToByte(produto.Imagem);
+                }
+            }
         }
 
         public IActionResult ObtemDadosConsultaAvancada(string nome)

@@ -15,7 +15,7 @@ namespace N1_2Bi___LP1.DAO
             parametros[1] = new SqlParameter("nome", model.Nome);
             parametros[2] = new SqlParameter("descricao", model.Descricao);
             parametros[3] = new SqlParameter("preco", model.Preco);
-            parametros[4] = new SqlParameter("preco", model.ImagemEmBase64);
+            parametros[4] = new SqlParameter("imagem", model.ImagemEmByte);
 
             return parametros;
         }
@@ -28,10 +28,10 @@ namespace N1_2Bi___LP1.DAO
             produto.Descricao = registro["descricao"].ToString();
             produto.Preco = Convert.ToDecimal(registro["preco"]);
 
-            if (registro.Table.Columns.Contains("imagem") && registro["imagem"] != DBNull.Value)
+            if (registro["imagem"] != DBNull.Value)
             {
                 // Aqui você converte a imagem em byte[]
-                produto.ImagemEmBase64;
+                produto.ImagemEmByte = registro["imagem"] as byte[];
             }
             // Se houver necessidade de mais campos, você pode adicioná-los aqui
 
@@ -39,17 +39,17 @@ namespace N1_2Bi___LP1.DAO
         }
 
 
-        public override void Inserir(ProdutoViewModel produto)
+        public override void Insert(ProdutoViewModel produto)
         {
             HelperDAO.ExecutaProc("spInsert_Produtos", CriaParametros(produto));
         }
 
-        public void Alterar(ProdutoViewModel produto)
+        public override void Update(ProdutoViewModel produto)
         {
             HelperDAO.ExecutaProc("spUpdate_Produtos", CriaParametros(produto));
         }
 
-        public void Excluir(int id)
+        public override void Delete(int id)
         {
             var p = new SqlParameter[]
             {
