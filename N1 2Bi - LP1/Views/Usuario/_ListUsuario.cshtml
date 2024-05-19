@@ -43,3 +43,10 @@
         </tbody>
     </table>
 </div>
+
+<script>
+    function apagarUsuario(id) {
+        if (confirm('Confirma a exclusão do registro?'))
+            location.href = 'Usuario/Delete?id=' + id;
+    }
+</script>
