@@ -30,8 +30,11 @@ CREATE TABLE Produtos (
 ```sql
 CREATE TABLE Pedidos (
     Id INT PRIMARY KEY,
-    Data DATETIME NOT NULL
+    UsuarioId INT NOT NULL,
+    Data DATETIME NOT NULL,
+    CONSTRAINT FK_Pedidos_Usuarios FOREIGN KEY (UsuarioId) REFERENCES Usuarios(Id)
 );
+
 ```
 
 ```sql
@@ -211,6 +214,24 @@ BEGIN
 END
 
 
+```
+
+
+### Stored Procedures de Pedidos
+
+```sql
+CREATE PROCEDURE spInsert_Pedidos
+(
+    @id INT,
+    @usuarioId INT,
+    @data DATETIME
+)
+AS
+BEGIN
+    INSERT INTO Pedidos (Id, UsuarioId, Data)
+    VALUES (@id, @usuarioId, @data);
+END
+GO
 ```
 
 ## Stored Procedures de Reviews
