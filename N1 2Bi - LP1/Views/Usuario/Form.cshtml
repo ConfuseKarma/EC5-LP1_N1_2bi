@@ -10,7 +10,7 @@
         <div class="col-md-6">
             <h1 class="display-2 fw-semibold mb-5">Novo Usuário</h1>
             <div class="d-flex align-content-center flex-wrap">
-                <form asp-action="Save" class="needs-validation" enctype="multipart/form-data" novalidate>
+                <form method="post" asp-action="Save" class="needs-validation" enctype="multipart/form-data">
                     <div class="row g-3">
                         <div class="col-md-7 mb-3">
                             <input value="@ViewBag.Operacao" type="hidden" name="Operacao">
@@ -36,7 +36,7 @@
                                 <div class="valid-feedback">
                                     Parece bom!
                                 </div>
-                                <div class="invalid-feedback">
+                                <div class="invalid-feedback" >
                                     Por favor, forneça um CPF válido.
                                 </div>
                             </div>
@@ -47,7 +47,7 @@
                                 <span class="input-group-text" id="spanEmail">&#x00040;</span>
                                 <input asp-for="Email" type="email" class="form-control" id="Email" aria-describedby="inputGroupPrepend" required>
                                 <div class="invalid-feedback">
-                                    Please, inform the email for contact.
+                                    Por favor, forneça um email válido.
                                 </div>
                             </div>
                         </div>
@@ -149,3 +149,30 @@
         </div>
     </div>
 </div>
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+<!-- Exibição de mensagens de erro -->
+<div id="alerta-cpf-invalido" class="alert alert-danger" style="display: none;" role="alert">
+    CPF inválido. Por favor, verifique o CPF digitado.
+</div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+<script>
+    // Script JavaScript para exibir mensagem de alerta caso o CPF seja inválido
+    $(document).ready(function () {
+        // Verifica se o formulário foi submetido
+        $('form').submit(function () {
+            // Verifica se o CPF é inválido
+            if ($('#Cpf').hasClass('is-invalid')) {
+                // Exibe a mensagem de alerta
+                $('#alerta-cpf-invalido').show();
+                // Retorna false para impedir o envio do formulário
+                return false;
+            }
+        });
+    });
+</script>
+
