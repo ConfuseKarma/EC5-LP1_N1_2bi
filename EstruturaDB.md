@@ -30,8 +30,11 @@ CREATE TABLE Produtos (
 ```sql
 CREATE TABLE Pedidos (
     Id INT PRIMARY KEY,
-    Data DATETIME NOT NULL
+    UsuarioId INT NOT NULL,
+    Data DATETIME NOT NULL,
+    CONSTRAINT FK_Pedidos_Usuarios FOREIGN KEY (UsuarioId) REFERENCES Usuarios(Id)
 );
+
 ```
 
 ```sql
