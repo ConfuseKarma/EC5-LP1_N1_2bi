@@ -1,20 +1,20 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
 }
 
 fieldset {
@@ -27,4 +27,10 @@ fieldset {
 
 legend {
     padding: 2px 4px;
+}
+
+/* Custom class for the home page image */
+.img-fluid {
+    max-width: 75%;
+    height: auto;
 }
