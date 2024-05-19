@@ -1,16 +1,20 @@
-﻿function buscaCEP() {
+﻿function buscaCEP()
+{
     var cep = document.getElementById("Cep").value;
     cep = cep.replace('-', ''); // removemos o traço do CEP
-    if (cep.length > 0) {
+    if (cep.length > 0)
+    {
         var linkAPI = 'https://viacep.com.br/ws/' + cep + '/json/';
         $.ajax({
             url: linkAPI,
-            beforeSend: function () {
+            beforeSend: function ()
+            {
                 document.getElementById("Endereco").value = '...';
                 document.getElementById("Cidade").value = '...';
                 document.getElementById("Estado").value = '...';
             },
-            success: function (dados) {
+            success: function (dados)
+            {
                 if (dados.erro != undefined) // quando o CEP não existe...
                 {
                     alert('CEP não localizado...');
@@ -29,4 +33,23 @@
             }
         });
     }
+}
+
+function aplicaFiltroConsultaAvancada() {
+    var vNome = document.getElementById('nome').value;
+    var vPrecoMenor = document.getElementById('precoMenor').value;
+    var vPrecoMaior = document.getElementById('precoMaior').value;
+    $.ajax({
+        url: "/jogo/ObtemDadosConsultaAvancada",
+        data: { descricao: vDescricao, categoria: vCategoria, dataInicial: vDataInicial, dataFinal: vDataFinal },
+        success: function (dados) {
+            if (dados.erro != undefined) {
+                alert(dados.msg);
+            }
+            else {
+                document.getElementById('resultadoConsulta').innerHTML = dados;
+            }
+        },
+    });
+
 }

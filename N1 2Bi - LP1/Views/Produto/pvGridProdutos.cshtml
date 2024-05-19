@@ -5,6 +5,7 @@
         <th>Nome</th>
         <th>Preço</th>
         <th>Descrição</th>
+        <th>Avaliação</th>
         <th>Imagem</th>
     </tr>
     @foreach (var produto in Model)
@@ -14,6 +15,7 @@
             <td>@produto.Nome</td>
             <td>@produto.Preco.ToString("0.00")</td>
             <td>@produto.Descricao</td>
+            <td>@produto.Avaliacao? de @produto.NumeroAvaliacoes? Avaliações</td>
             <td class="col-md-3"> <img src="data:image/jpeg;base64,@produto.ImagemEmBase64" alt="Imagem do Funcionário" style="max-width: 100px; max-height: 100px;"></td>
            
         </tr>

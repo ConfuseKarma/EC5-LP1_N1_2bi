@@ -5,6 +5,8 @@ namespace N1_2Bi___LP1.Models
         public string Nome { get; set; }
         public decimal Preco { get; set; }
         public string Descricao { get; set; }
+        public int? NumeroAvaliacoes { get; set; }
+        public decimal? Avaliacao { get; set; }
 
         /// <summary>
         /// Imagem recebida do form pelo controller

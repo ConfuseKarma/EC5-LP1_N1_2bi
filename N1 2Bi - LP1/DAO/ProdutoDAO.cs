@@ -33,6 +33,13 @@ namespace N1_2Bi___LP1.DAO
                 // Aqui você converte a imagem em byte[]
                 produto.ImagemEmByte = registro["imagem"] as byte[];
             }
+
+            if (registro.Table.Columns.Contains("avaliacao"))
+                produto.Avaliacao = Convert.ToDecimal(registro["avaliacao"]);
+
+            if (registro.Table.Columns.Contains("numeroAvaliacao"))
+                produto.NumeroAvaliacoes = Convert.ToInt32(registro["numeroAvaliacao"]);
+
             // Se houver necessidade de mais campos, você pode adicioná-los aqui
 
             return produto;
@@ -49,6 +56,16 @@ namespace N1_2Bi___LP1.DAO
             Tabela = "Produtos";
         }
 
+        public override List<ProdutoViewModel> Listagem()
+        {
+            string sql = "EXEC spListagem_Produtos;";
+            var tabela = HelperDAO.ExecutaSelect(sql, null);
+            List<ProdutoViewModel> lista = new List<ProdutoViewModel>();
+            foreach (DataRow registro in tabela.Rows)
+                lista.Add(MontaModel(registro));
+            return lista;
+        }
+
         public List<ProdutoViewModel> ConsultaAvancadaProduto(string nome)
         {
             SqlParameter[] parametros = {new SqlParameter("nome", nome)  };
@@ -58,6 +75,7 @@ namespace N1_2Bi___LP1.DAO
                 lista.Add(MontaModel(dr));
             return lista;
         }
+
 
     }
 

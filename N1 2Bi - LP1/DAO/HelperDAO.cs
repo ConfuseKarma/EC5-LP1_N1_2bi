@@ -36,8 +36,7 @@ namespace N1_2Bi___LP1.DAO
                 using (SqlDataAdapter adapter = new SqlDataAdapter(sql, conexao))
 
                 {
-                    if (parametros != null
-                   )
+                    if (parametros != null)
                         adapter.SelectCommand.Parameters.AddRange(parametros);
                     DataTable tabela = new DataTable();
                     adapter.Fill(tabela);

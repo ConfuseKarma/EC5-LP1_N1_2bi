@@ -80,7 +80,7 @@ namespace N1_2Bi___LP1.Controllers
                     nome = "";
 
                 List<ProdutoViewModel> lista = dao.ConsultaAvancadaProduto(nome); 
-                return PartialView("_ListProd", lista); 
+                return PartialView("pvGridProdutos", lista); 
             }
             catch (Exception erro)
             {
