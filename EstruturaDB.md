@@ -216,6 +216,24 @@ END
 
 ```
 
+
+### Stored Procedures de Pedidos
+
+```sql
+CREATE PROCEDURE spInsert_Pedidos
+(
+    @id INT,
+    @usuarioId INT,
+    @data DATETIME
+)
+AS
+BEGIN
+    INSERT INTO Pedidos (Id, UsuarioId, Data)
+    VALUES (@id, @usuarioId, @data);
+END
+GO
+```
+
 ## Stored Procedures de Reviews
 
 ```sql
