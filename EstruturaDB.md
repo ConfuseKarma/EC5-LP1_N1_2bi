@@ -191,7 +191,25 @@ GO
 ```
 
 ```sql
+CREATE PROCEDURE spListagem_Produtos
+AS
+BEGIN
+    SET NOCOUNT ON;
 
+    SELECT 
+        p.*,
+        COUNT(r.Id) AS NumeroAvaliacao,
+        COALESCE(ROUND(AVG(CAST(r.Pontuacao AS DECIMAL(10, 2))), 2), 0) AS Avaliacao
+    FROM 
+        Produtos p
+    LEFT JOIN 
+        Reviews r ON p.Id = r.ProdutoId
+    GROUP BY 
+        p.Id, p.Nome, p.Preco, p.Descricao, p.Imagem;
+END;
+```
+
+```sql
 CREATE PROCEDURE [dbo].[spConsultaAvancadaProdutos]
 (
     @nome NVARCHAR(255),
