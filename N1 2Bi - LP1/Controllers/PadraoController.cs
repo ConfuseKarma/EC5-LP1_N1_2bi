@@ -13,6 +13,10 @@ namespace N1_2Bi___LP1.Controllers
         protected bool GeraProximoId { get; set; }
         protected string NomeViewIndex { get; set; } = "index";
         protected string NomeViewForm { get; set; } = "form";
+        protected virtual string RedirectController { get; set; } = string.Empty;
+        protected virtual string RedirectView { get; set; } = "index";
+
+
         public virtual IActionResult Index()
         {
             try
@@ -61,7 +65,11 @@ namespace N1_2Bi___LP1.Controllers
                         DAO.Insert(model);
                     else
                         DAO.Update(model);
-                    return RedirectToAction(NomeViewIndex);
+
+                    if (RedirectController != null)
+                       return RedirectToAction(RedirectView,  RedirectController);
+                   else
+                        return RedirectToAction(RedirectView);
                 }
             }
             catch (Exception erro)

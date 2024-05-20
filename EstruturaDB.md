@@ -14,7 +14,7 @@ CREATE TABLE Usuarios (
     Cidade VARCHAR(MAX),
     Estado VARCHAR(2),
     CEP VARCHAR(10),
-    isAdmin BOOLEAN
+    isAdmin BIT
 );
 
 ```
@@ -80,7 +80,7 @@ CREATE PROCEDURE spInsert_Usuarios
     @estado VARCHAR(2),
     @cep VARCHAR(10),
     @senha VARCHAR(100),
-    @isAdmin BOOLEAN
+    @isAdmin BIT
 )
 AS
 BEGIN
@@ -107,7 +107,7 @@ CREATE PROCEDURE spUpdate_Usuarios
     @estado VARCHAR(2),
     @cep VARCHAR(10),
     @senha VARCHAR(100),
-    @isAdmin BOOLEAN
+    @isAdmin BIT
 )
 AS
 BEGIN

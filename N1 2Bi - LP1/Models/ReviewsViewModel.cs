@@ -6,5 +6,6 @@
         public int UsuarioId { get; set; }
         public int Pontuacao { get; set; }
         public string Descricao { get; set; }
+        public string NomeUser { get; set; }
     }
 }
