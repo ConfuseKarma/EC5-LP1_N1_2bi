@@ -34,30 +34,25 @@
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Produto" asp-action="Index">Produto</a>
                             </li>
 
-                            <div class="d-flex">
-                                <ul class="navbar-nav">
-                                    <li class="nav-item">
-                                        <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Index">Login</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="Create">Sign Up</a>
-                                    </li>
-                                </ul>
-                            </div>
+
+                            <ul class="navbar-nav ms-auto">
+                                <div class="d-flex">
+                                    <ul class="navbar-nav">
+                                        <li class="nav-item">
+                                            <a class="nav-link text-dark" asp-area="" asp-controller="Carrinho" asp-action="Index">Carrinho</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Index">Login</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="Create">Sign Up</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </ul>
                         }
                         else
-                        {
-
-                            /* 
-
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="Index">Usuário</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Produto" asp-action="Index">Produto</a>
-                            </li>
-
-                            /*/
+                        {                         
 
                         <ul class="navbar-nav ms-auto">
                             <div class="d-flex">
