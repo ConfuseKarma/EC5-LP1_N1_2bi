@@ -13,8 +13,10 @@ CREATE TABLE Usuarios (
     Numero VARCHAR(10),
     Cidade VARCHAR(MAX),
     Estado VARCHAR(2),
-    CEP VARCHAR(10)
+    CEP VARCHAR(10),
+    isAdmin BOOLEAN
 );
+
 ```
 
 ```sql
@@ -77,14 +79,15 @@ CREATE PROCEDURE spInsert_Usuarios
     @cidade VARCHAR(MAX),
     @estado VARCHAR(2),
     @cep VARCHAR(10),
-    @senha VARCHAR(100) 
+    @senha VARCHAR(100),
+    @isAdmin BOOLEAN
 )
 AS
 BEGIN
     INSERT INTO Usuarios
-    (id, nome, cpf, telefone, email, endereco, numero, cidade, estado, cep, senha)
+    (id, nome, cpf, telefone, email, endereco, numero, cidade, estado, cep, senha, isAdmin)
     VALUES
-    (@id, @nome, @cpf, @telefone, @email, @endereco, @numero, @cidade, @estado, @cep, @senha);
+    (@id, @nome, @cpf, @telefone, @email, @endereco, @numero, @cidade, @estado, @cep, @senha, @isAdmin);
 END
 GO
 
@@ -103,7 +106,8 @@ CREATE PROCEDURE spUpdate_Usuarios
     @cidade VARCHAR(MAX),
     @estado VARCHAR(2),
     @cep VARCHAR(10),
-    @senha VARCHAR(100) 
+    @senha VARCHAR(100),
+    @isAdmin BOOLEAN
 )
 AS
 BEGIN
@@ -116,11 +120,11 @@ BEGIN
     cidade = @cidade,
     estado = @estado,
     cep = @cep,
-    senha = @senha 
+    senha = @senha,
+    isAdmin = @isAdmin 
     WHERE id = @id;
 END
 GO
-
 ```
 
 ```sql
