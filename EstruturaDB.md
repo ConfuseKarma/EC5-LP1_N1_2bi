@@ -260,7 +260,7 @@ GO
 ## Stored Procedures de Reviews
 
 ```sql
-CREATE PROCEDURE spInsert_Review
+CREATE PROCEDURE spInsert_Reviews
 (
     @ProdutoId INT,
     @UsuarioId INT,
@@ -279,7 +279,7 @@ GO
 ```
 
 ```sql
-CREATE PROCEDURE spUpdate_Review
+CREATE PROCEDURE spUpdate_Reviews
 (
     @Id INT,
     @ProdutoId INT,
