@@ -10,7 +10,9 @@ namespace N1_2Bi___LP1.Controllers
         {
             DAO = new ReviewsDAO();
             GeraProximoId = true;
+            RedirectController = "Produto";
         }
+
         public override IActionResult Create(int? produtoId)
         {
             try
@@ -40,8 +42,7 @@ namespace N1_2Bi___LP1.Controllers
             }
         }
 
-        //sobrecarga para o método create, pois o programa não aceita overrides com novos parâmetros,
-        //o mesmo vale para o método preenchedadosparaview
+        //sobrecarga para o método PreencheDadosParaView
 
         protected override void PreencheDadosParaView(string Operacao, ReviewsViewModel model)
         {

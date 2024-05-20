@@ -1,0 +1,36 @@
+﻿@model List<ReviewsViewModel>
+
+
+<a href="/Reviews/ExibeConsultaAvancada" class="btn btn-success">Consulta Avançada</a>
+<br />
+<br />
+<table class="table table-striped table-responsive">
+    <tr>
+        <th>Ações</th>
+        <th>Código</th>
+        <th>Usuário</th>
+        <th>Descrição</th>
+        <th>Pontuação</th>
+    </tr>
+
+    @foreach (ReviewsViewModel review in Model)
+    {
+        <tr>
+            <td>
+                <a href="/Reviews/edit?id=@review.Id">✍🏻</a>
+                <a href="javascript:apagarReview(@review.Id)">💣</a>
+            </td>
+            <td>@review.Id</td>
+            <td>@review.NomeUser</td>
+            <td>@review.Descricao</td>
+            <td>☆ @review.Pontuacao/5,0</td>
+        </tr>
+    }
+</table>
+<script>
+    function apagarReview(id) {
+        if (confirm('Confirma a exclusão do registro?'))
+            location.href = '/Reviews/Delete?id=' + id;
+    }
+</script>
+
