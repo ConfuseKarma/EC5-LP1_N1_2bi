@@ -30,7 +30,7 @@ namespace N1_2Bi___LP1.DAO
 
         protected override void SetTabela()
         {
-            Tabela = "Pedido";
+            Tabela = "Pedidos";
             ChaveIdentity = true;
         }
     }
