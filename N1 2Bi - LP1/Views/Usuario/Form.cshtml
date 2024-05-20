@@ -136,6 +136,28 @@
                             </div>
                         </div>
 
+                        <div class="col-md-6">
+                            <label for="IsAdmin" class="form-label">Administrador</label>
+                            <div class="input-group has-validation">
+                                <!-- PRECISA TESTAR Verifica se o usuário autenticado é um administrador -->
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <!-- Se sim, exibe a caixa de seleção para IsAdmin -->
+                                    <select asp-for="IsAdmin" class="form-select" id="IsAdmin">
+                                        <option value="False">Não</option>
+                                        <option value="True">Sim</option>
+                                    </select>
+                                }
+                                else
+                                {
+                                    <!-- Se não, mantém o campo oculto com valor padrão false -->
+                                    <input asp-for="IsAdmin" type="hidden" value="False" />
+                                    <p>Este campo só está disponível para administradores.</p>
+                                }
+                            </div>
+                        </div>
+
+
                         <div class="col-md-7 mb-3">
                             <button type="submit" value="Salvar dados" class="rounded-pill btn btn-lg btn-info mr-3">Registrar</button>
                         </div>
