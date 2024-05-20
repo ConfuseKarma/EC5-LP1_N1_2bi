@@ -3,31 +3,38 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<center><h2>Produtos à venda</h2></center>
-<br />
-<div class="fundo-vitrine">
-    <img src="~/lib/img/carrinho.png" />
-    Há @ViewBag.TotalCarrinho produtos no carrinho.
-    <a href="/Carrinho/Visualizar">Visualizar</a>
-</div>
-<br />
-<br />
-<div class="fundo-vitrine">
-    <ul class="ul-vitrine">
+<div class="container">
+    <center><h2>Produtos à venda</h2></center>
+    <br />
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card text-center">
+                <div class="card-body">
+                    <img src="~/lib/img/carrinho.png" class="img-fluid" alt="Imagem de carrinho" style="max-width: 100px;">
+                    <p class="card-text">Há @ViewBag.TotalCarrinho produtos no carrinho.</p>
+                    <a href="/Carrinho/Visualizar" class="btn btn-primary">Visualizar Carrinho</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="row">
         @foreach (var produto in Model)
         {
-            <li class="li-vitrine">
-                <a href="/Carrinho/Detalhes/?idProduto=@produto.Id">
-                    <figure class="figura-vitrine">
-                        <img class="imagem-vitrine" src="data:image/jpeg;base64,@produto.Imagem">
-                        <figcaption>
-                            @produto.Nome<br>
-                        </figcaption>
-                    </figure>
-                </a>
-            </li>
+            <div class="col-md-3">
+                <div class="card mb-4">
+                    <a href="/Carrinho/Detalhes/?idProduto=@produto.Id">
+                        <img class="card-img-top" src="data:image/jpeg;base64,@produto.ImagemEmBase64" alt="@produto.Nome">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">@produto.Nome</h5>
+                        <p class="card-text">Preço: @produto.Preco.ToString("C")</p>
+                        <a href="/Carrinho/Detalhes/?idProduto=@produto.Id" class="btn btn-primary">Detalhes</a>
+                    </div>
+                </div>
+            </div>
         }
-    </ul>
+    </div>
 </div>
 
 @section Styles {

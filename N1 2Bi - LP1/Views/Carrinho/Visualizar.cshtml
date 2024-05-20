@@ -4,26 +4,31 @@
 }
 <h2>Produtos no carrinho</h2>
 <br />
-<table class="table table-responsive">
-    <tr>
-        <th>Produto</th>
-        <th>Imagem</th>
-        <th>Quantidade</th>
-    </tr>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>@item.ProdutoId - @item.Nome</td>
-            <td>
-                <img id="imgPreview" src="data:image/jpeg;base64,@item.Imagem"
-                     class="img-responsive" width="50">
-            </td>
-            <td>@item.Quantidade</td>
-        </tr>
-    }
-</table>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Produto</th>
+                <th scope="col">Imagem</th>
+                <th scope="col">Quantidade</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Nome</td>
+                    <td>
+                        <img src="data:image/jpeg;base64,@item.Imagem" class="img-thumbnail" alt="@item.Nome" width="100">
+                    </td>
+                    <td>@item.Quantidade</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 <br />
-<a href="/Carrinho/Index">Retornar para as compras</a>
-<br />
-<br />
-<a href="/Carrinho/EfetuarPedido">Fechar pedido!</a>
+<div class="text-center">
+    <a href="/Carrinho/Index" class="btn btn-primary">Continuar Comprando</a>
+    <a href="/Carrinho/EfetuarPedido" class="btn btn-success">Fechar Pedido</a>
+</div>
