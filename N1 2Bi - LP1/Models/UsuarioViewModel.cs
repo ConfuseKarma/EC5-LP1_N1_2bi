@@ -12,5 +12,6 @@ namespace N1_2Bi___LP1.Models
         public string Cidade { get; set; }
         public string Estado { get; set; }
         public string Cep { get; set; }
+        public bool IsAdmin { get; set; }
     }
 }

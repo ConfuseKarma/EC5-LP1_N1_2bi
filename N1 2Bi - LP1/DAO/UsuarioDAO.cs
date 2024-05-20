@@ -10,7 +10,7 @@ namespace N1_2Bi___LP1.DAO
     {
         protected override SqlParameter[] CriaParametros(UsuarioViewModel model)
         {
-            SqlParameter[] parametros = new SqlParameter[11]; // Agora são 11 parâmetros
+            SqlParameter[] parametros = new SqlParameter[12]; // Agora são 11 parâmetros
             parametros[0] = new SqlParameter("Id", model.Id);
             parametros[1] = new SqlParameter("nome", model.Nome);
             parametros[2] = new SqlParameter("cpf", model.Cpf);
@@ -22,6 +22,7 @@ namespace N1_2Bi___LP1.DAO
             parametros[8] = new SqlParameter("cidade", model.Cidade);
             parametros[9] = new SqlParameter("estado", model.Estado);
             parametros[10] = new SqlParameter("cep", model.Cep);
+            parametros[11] = new SqlParameter("isAdmin", model.IsAdmin);
 
             return parametros;
         }
@@ -40,6 +41,7 @@ namespace N1_2Bi___LP1.DAO
             usuario.Cidade = registro["Cidade"].ToString();
             usuario.Estado = registro["Estado"].ToString();
             usuario.Cep = registro["Cep"].ToString();
+            usuario.IsAdmin = Convert.ToBoolean(registro["IsAdmin"]);
 
             return usuario;
         }
