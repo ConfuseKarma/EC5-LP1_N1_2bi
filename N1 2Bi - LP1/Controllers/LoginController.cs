@@ -13,31 +13,40 @@ namespace N1_2Bi___LP1.Controllers
             return View();
             
         }
-        
-         public IActionResult FazLogin(string email, string senha)
+
+        public IActionResult FazLogin(string email, string senha)
         {
             using (SqlConnection conexao = ConexaoBD.GetConexao())
             {
-                // Query para verificar se o usuário e senha existem no banco de dados
-                string query = "SELECT COUNT(*) FROM Usuarios WHERE Email = @Email AND Senha = @Senha";
+                // Query para verificar se o usuário e senha existem no banco de dados e se é administrador
+                string query = "SELECT Id, IsAdmin FROM Usuarios WHERE Email = @Email AND Senha = @Senha";
                 SqlCommand cmd = new SqlCommand(query, conexao);
                 cmd.Parameters.AddWithValue("@Email", email);
                 cmd.Parameters.AddWithValue("@Senha", senha);
 
-                int count = (int)cmd.ExecuteScalar();
-                
-                if (count > 0)
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
                 {
-                    HttpContext.Session.SetString("Logado", "true");
-                    SqlDataReader reader = cmd.ExecuteReader();
+                    int userId = reader.GetInt32(0);
+                    bool isAdmin = reader.GetBoolean(1);
 
-                    if (reader.Read())
+                    // Definir a role do usuário com base no campo IsAdmin
+                    if (isAdmin)
                     {
-                        int userId = reader.GetInt32(0);
-
-                        // Armazenar o ID do usuário na sessão
-                        HttpContext.Session.SetInt32("UserId", userId);
+                        HttpContext.Session.SetString("Role", "Admin");
                     }
+                    else
+                    {
+                        HttpContext.Session.SetString("Role", "User");
+                    }
+
+                    // Armazenar o ID do usuário na sessão
+                    HttpContext.Session.SetInt32("UserId", userId);
+
+                    // Definir a flag de login como verdadeira na sessão
+                    HttpContext.Session.SetString("Logado", "true");
+
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -47,7 +56,7 @@ namespace N1_2Bi___LP1.Controllers
                 }
             }
         }
-        
+
         public IActionResult LogOff()
         {
             HttpContext.Session.Clear();
