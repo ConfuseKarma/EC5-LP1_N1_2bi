@@ -213,24 +213,29 @@ END;
 CREATE PROCEDURE [dbo].[spConsultaAvancadaProdutos]
 (
     @nome NVARCHAR(255),
-    @preco DECIMAL(18, 2)
+    @analises INT,
+    @precoMenor DECIMAL(18, 2),
+    @precoMaior DECIMAL(18, 2)
 )
 AS
 BEGIN
-    IF @preco IS NULL
-    BEGIN
-        SELECT *
-        FROM Produtos
-        WHERE Nome LIKE '%' + @nome + '%';
-    END
-    ELSE
-    BEGIN
-        SELECT *
-        FROM Produtos
-        WHERE Nome LIKE '%' + @nome + '%' AND Preco <= @preco;
-    END
+    SELECT 
+        p.*,
+        COUNT(r.Id) AS NumeroAvaliacao,
+        COALESCE(ROUND(AVG(CAST(r.Pontuacao AS DECIMAL(10, 2))), 2), 0) AS Avaliacao
+    FROM 
+        Produtos p
+    LEFT JOIN 
+        Reviews r ON p.Id = r.ProdutoId
+    WHERE 
+        p.Nome LIKE '%' + @nome + '%' AND
+        p.Preco BETWEEN @precoMenor AND @precoMaior
+    GROUP BY 
+        p.Id, p.Nome, p.Preco, p.Descricao, p.Imagem
+    ORDER BY
+        CASE WHEN @analises = 1 THEN COALESCE(ROUND(AVG(CAST(r.Pontuacao AS DECIMAL(10, 2))), 2), 0) END DESC,
+        CASE WHEN @analises = 2 THEN COALESCE(ROUND(AVG(CAST(r.Pontuacao AS DECIMAL(10, 2))), 2), 0) END ASC;
 END
-
 
 ```
 
