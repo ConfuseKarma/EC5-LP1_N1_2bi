@@ -262,6 +262,7 @@ GO
 ```sql
 CREATE PROCEDURE spInsert_Reviews
 (
+    @Id INT,
     @ProdutoId INT,
     @UsuarioId INT,
     @Pontuacao INT,
@@ -271,9 +272,9 @@ AS
 BEGIN
     -- Insere a nova review na tabela Reviews
     INSERT INTO Reviews
-    (ProdutoId, UsuarioId, Pontuacao, Descricao, DataAvaliacao)
+    (Id, ProdutoId, UsuarioId, Pontuacao, Descricao, DataAvaliacao)
     VALUES
-    (@ProdutoId, @UsuarioId, @Pontuacao, @Descricao, GETDATE());
+    (@Id, @ProdutoId, @UsuarioId, @Pontuacao, @Descricao, GETDATE());
 END
 GO
 ```
