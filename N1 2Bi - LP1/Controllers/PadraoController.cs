@@ -25,7 +25,7 @@ namespace N1_2Bi___LP1.Controllers
                 return View("Error", new ErrorViewModel(erro.ToString()));
             }
         }
-        public virtual IActionResult Create()
+        public virtual IActionResult Create(int? produtoId)
         {
             try
             {
