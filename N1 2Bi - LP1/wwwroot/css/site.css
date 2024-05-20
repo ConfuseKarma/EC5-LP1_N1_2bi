@@ -34,3 +34,28 @@ legend {
     max-width: 75%;
     height: auto;
 }
+
+.star-rating {
+    direction: rtl;
+    display: inline-block;
+    unicode-bidi: bidi-override;
+    font-size: 2rem;
+    color: #ddd;
+    cursor: pointer;
+}
+
+.star-rating input {
+    display: none;
+}
+
+.star-rating label {
+    display: inline-block;
+    position: relative;
+    padding: 0
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label,
+.star-rating input:checked ~ label {
+    color: #f5b301;
+}

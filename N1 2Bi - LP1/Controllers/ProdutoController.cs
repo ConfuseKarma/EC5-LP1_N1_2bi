@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using N1_2Bi___LP1.DAO;
 using N1_2Bi___LP1.Models;
+using System.Data.SqlTypes;
 using System.Reflection;
 
 namespace N1_2Bi___LP1.Controllers
@@ -16,11 +17,6 @@ namespace N1_2Bi___LP1.Controllers
         {
             DAO = new ProdutoDAO();
             GeraProximoId = true;
-        }
-        public IActionResult ListarProduto()
-        {
-            List<ProdutoViewModel> produto = new List<ProdutoViewModel>();
-            return View("ConsultaAvancada", produto);
         }
 
         public byte[] ConvertImageToByte(IFormFile file)
@@ -71,15 +67,36 @@ namespace N1_2Bi___LP1.Controllers
             }
         }
 
-        public IActionResult ObtemDadosConsultaAvancada(string nome)
+        public IActionResult ExibeConsultaAvancada()
+        {
+            try
+            {
+                List<ProdutoViewModel> produto = new List<ProdutoViewModel>();
+                return View("ConsultaAvancada", produto);
+            }
+            catch (Exception erro)
+            {
+                return View("Error", new ErrorViewModel(erro.Message));
+            }
+
+        }
+
+        public IActionResult ObtemDadosConsultaAvancada(string nome, int analises,
+                                                        decimal? precoMenor,
+                                                        decimal? precoMaior)
         {
             try
             {
                 ProdutoDAO dao = new ProdutoDAO(); 
                 if (string.IsNullOrEmpty(nome))
                     nome = "";
+                if (precoMenor == null)
+                    precoMenor = 0;
+                if (precoMaior == null)
+                    precoMaior = 100000;
 
-                List<ProdutoViewModel> lista = dao.ConsultaAvancadaProduto(nome); 
+
+                List<ProdutoViewModel> lista = dao.ConsultaAvancadaProduto(nome, analises, precoMenor, precoMaior); 
                 return PartialView("pvGridProdutos", lista); 
             }
             catch (Exception erro)

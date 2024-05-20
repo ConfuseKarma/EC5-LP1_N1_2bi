@@ -25,10 +25,19 @@ namespace N1_2Bi___LP1.Controllers
                 cmd.Parameters.AddWithValue("@Senha", senha);
 
                 int count = (int)cmd.ExecuteScalar();
-
+                
                 if (count > 0)
                 {
                     HttpContext.Session.SetString("Logado", "true");
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        int userId = reader.GetInt32(0);
+
+                        // Armazenar o ID do usuário na sessão
+                        HttpContext.Session.SetInt32("UserId", userId);
+                    }
                     return RedirectToAction("Index", "Home");
                 }
                 else

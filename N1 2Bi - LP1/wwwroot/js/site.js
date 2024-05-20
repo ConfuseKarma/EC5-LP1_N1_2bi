@@ -37,11 +37,13 @@
 
 function aplicaFiltroConsultaAvancada() {
     var vNome = document.getElementById('nome').value;
+    var vAnalises = document.getElementById('analises').value;
     var vPrecoMenor = document.getElementById('precoMenor').value;
     var vPrecoMaior = document.getElementById('precoMaior').value;
+    
     $.ajax({
-        url: "/jogo/ObtemDadosConsultaAvancada",
-        data: { descricao: vDescricao, categoria: vCategoria, dataInicial: vDataInicial, dataFinal: vDataFinal },
+        url: "/Produto/ObtemDadosConsultaAvancada",
+        data: { nome: vNome, analises: vAnalises, precoMenor: vPrecoMenor, precoMaior: vPrecoMaior },
         success: function (dados) {
             if (dados.erro != undefined) {
                 alert(dados.msg);

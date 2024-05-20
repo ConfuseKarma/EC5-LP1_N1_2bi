@@ -66,10 +66,17 @@ namespace N1_2Bi___LP1.DAO
             return lista;
         }
 
-        public List<ProdutoViewModel> ConsultaAvancadaProduto(string nome)
+        public List<ProdutoViewModel> ConsultaAvancadaProduto(string nome, int analises,
+                                                        decimal? precoMenor,
+                                                        decimal? precoMaior)
         {
-            SqlParameter[] parametros = {new SqlParameter("nome", nome)  };
-            var tabela = HelperDAO.ExecutaProcSelect("spConsultaAvancadaProdutosPorNome", parametros);
+            SqlParameter[] parametros = {
+                new SqlParameter("nome", nome),
+                new SqlParameter("analises", analises),
+                new SqlParameter("precoMenor", precoMenor),
+                new SqlParameter("precoMaior", precoMaior),
+            };
+            var tabela = HelperDAO.ExecutaProcSelect("spConsultaAvancadaProdutos", parametros);
             var lista = new List<ProdutoViewModel>();
             foreach (DataRow dr in tabela.Rows)
                 lista.Add(MontaModel(dr));

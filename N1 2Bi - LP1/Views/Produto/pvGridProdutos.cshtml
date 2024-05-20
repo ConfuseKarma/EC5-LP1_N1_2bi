@@ -1,6 +1,7 @@
 ﻿@model List<ProdutoViewModel>
 <table class="table table-striped">
     <tr>
+        <th>Ações</th>
         <th>Código</th>
         <th>Nome</th>
         <th>Preço</th>
@@ -11,13 +12,23 @@
     @foreach (var produto in Model)
     {
         <tr>
+            <td>
+                <a href="/produto/edit?id=@produto.Id">✍🏻</a>
+                <a href="javascript:apagarProduto(@produto.Id)">💣</a>
+                <a href="/Reviews/Create?produtoId=@produto.Id">☆</a>
+            </td>
             <td>@produto.Id</td>
             <td>@produto.Nome</td>
-            <td>@produto.Preco.ToString("0.00")</td>
+            <td>@produto.Preco.ToString("C")</td>
             <td>@produto.Descricao</td>
-            <td>@produto.Avaliacao? de @produto.NumeroAvaliacoes? Avaliações</td>
+            <td>@produto.Avaliacao.Value.ToString("0.00") de @produto.NumeroAvaliacoes Avaliações</td>
             <td class="col-md-3"> <img src="data:image/jpeg;base64,@produto.ImagemEmBase64" alt="Imagem do Funcionário" style="max-width: 100px; max-height: 100px;"></td>
-           
         </tr>
     }
 </table>
+<script>
+    function apagarProduto(id) {
+        if (confirm('Confirma a exclusão do registro?'))
+            location.href = 'Produto/Delete?id=' + id;
+    }
+</script>

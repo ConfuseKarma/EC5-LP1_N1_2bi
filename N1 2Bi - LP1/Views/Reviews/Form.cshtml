@@ -1,0 +1,33 @@
+﻿@model ReviewsViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Dê uma Avaliação</h2>
+
+<form asp-action="save" class="needs-validation" enctype="multipart/form-data" novalidate>
+
+    <input value="@ViewBag.Operacao" type="hidden" name="Operacao">
+    <input asp-for="Id" class="form-control" id="id" hidden>
+    <input asp-for="ProdutoId" class="form-control" id="produtoId" hidden>
+    <input asp-for="UsuarioId" value="@ViewBag.UserId" hidden/>
+
+    <label for="Descricao" class="control-label">Descrição</label>
+    <input asp-for="Descricao" class="form-control" />
+    <span asp-validation-for="Descricao" class="text-danger"></span>
+    <br />
+
+    <label for="Pontuacao" class="control-label">Pontuação</label>
+    <div class="star-rating">
+        <input type="radio" name="rating" id="star5" value="5"><label for="star5" title="5 stars">☆</label>
+        <input type="radio" name="rating" id="star4" value="4"><label for="star4" title="4 stars">☆</label>
+        <input type="radio" name="rating" id="star3" value="3"><label for="star3" title="3 stars">☆</label>
+        <input type="radio" name="rating" id="star2" value="2"><label for="star2" title="2 stars">☆</label>
+        <input type="radio" name="rating" id="star1" value="1"><label for="star1" title="1 star">☆</label>
+    </div>
+    <span asp-validation-for="Pontuacao" class="text-danger"></span>
+
+    <br />
+    <input type="submit" value="Salvar Review" class="btn btn-info" />
+    <br />
+
+</form>
