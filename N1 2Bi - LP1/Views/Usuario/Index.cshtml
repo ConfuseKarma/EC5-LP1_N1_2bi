@@ -16,6 +16,7 @@
         <th>Número</th>
         <th>Cidade</th>
         <th>Estado</th>
+        <th>Admin</th> 
     </tr>
 
     @foreach (UsuarioViewModel usuario in Model)
@@ -35,6 +36,7 @@
             <td>@usuario.Numero</td>
             <td>@usuario.Cidade</td>
             <td>@usuario.Estado</td>
+            <td>@(usuario.IsAdmin ? "Sim" : "Não")</td> 
         </tr>
     }
 </table>
@@ -45,4 +47,3 @@
             location.href = 'Usuario/Delete?id=' + id;
     }
 </script>
-
