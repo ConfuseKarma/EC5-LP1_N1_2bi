@@ -50,7 +50,7 @@ CREATE TABLE PedidoItem (
 
 ```sql
 CREATE TABLE Reviews (
-    Id INT PRIMARY KEY IDENTITY(1,1),
+    Id INT PRIMARY KEY,
     ProdutoId INT NOT NULL, 
     UsuarioId INT NOT NULL, 
     Pontuacao INT CHECK (Pontuacao BETWEEN 1 AND 5),
