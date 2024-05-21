@@ -122,10 +122,17 @@ namespace N1_2Bi___LP1.Controllers
         //
 
         protected virtual bool ExigeAutenticacao { get; set; } = true;
+        protected virtual bool ExigeAdmin { get; set; } = false;
         public override void OnActionExecuting(ActionExecutingContext context)
         {
             if (ExigeAutenticacao && !HelperControllers.VerificaUserLogado(HttpContext.Session))
+            {
                 context.Result = RedirectToAction("Index", "Login");
+            }
+            else if (ExigeAdmin && HttpContext.Session.GetString("Role") != "Admin")
+            {
+                context.Result = RedirectToAction("Index", "Login");
+            }
             else
             {
                 ViewBag.Logado = true;
