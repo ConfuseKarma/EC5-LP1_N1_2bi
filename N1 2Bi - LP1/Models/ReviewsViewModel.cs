@@ -7,5 +7,6 @@
         public int Pontuacao { get; set; }
         public string Descricao { get; set; }
         public string NomeUser { get; set; }
+        public string NomeProduto { get; set; }
     }
 }

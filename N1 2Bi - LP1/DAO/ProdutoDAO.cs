@@ -56,7 +56,7 @@ namespace N1_2Bi___LP1.DAO
             Tabela = "Produtos";
         }
 
-        public override List<ProdutoViewModel> Listagem()
+        public override List<ProdutoViewModel> Listagem(int id = 0)
         {
             string sql = "EXEC spListagem_Produtos;";
             var tabela = HelperDAO.ExecutaSelect(sql, null);

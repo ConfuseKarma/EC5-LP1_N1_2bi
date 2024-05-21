@@ -13,6 +13,20 @@ namespace N1_2Bi___LP1.Controllers
             RedirectController = "Produto";
         }
 
+
+        public override IActionResult Index(int id)
+        {
+            try
+            {
+                var lista = DAO.Listagem(id);
+                return View(NomeViewIndex, lista);
+            }
+            catch (Exception erro)
+            {
+                return View("Error", new ErrorViewModel(erro.ToString()));
+            }
+        }
+
         public override IActionResult Create(int? produtoId)
         {
             try

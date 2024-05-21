@@ -13,7 +13,7 @@ namespace N1_2Bi___LP1.DAO
             SetTabela();
         }
         protected string Tabela { get; set; }
-        protected string NomeSpListagem { get; set; } = "spListagem";
+        protected virtual string NomeSpListagem { get; set; } = "spListagem";
         protected abstract SqlParameter[] CriaParametros(T model);
         protected abstract T MontaModel(DataRow registro);
         protected abstract void SetTabela();
@@ -57,7 +57,7 @@ namespace N1_2Bi___LP1.DAO
             var tabela = HelperDAO.ExecutaProcSelect("spProximoId", p);
             return Convert.ToInt32(tabela.Rows[0][0]);
         }
-        public virtual List<T> Listagem()
+        public virtual List<T> Listagem(int id = 0)
         {
             var p = new SqlParameter[]
             {

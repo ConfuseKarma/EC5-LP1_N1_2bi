@@ -27,7 +27,7 @@
             <td>@produto.Nome</td>
             <td>@produto.Preco.ToString("C")</td>
             <td>@produto.Descricao</td>
-            <td><a href="/Reviews/Index?produtoId=@produto.Id">☆ @produto.Avaliacao.Value.ToString("0.00")/5,00 de @produto.NumeroAvaliacoes Avaliações</a></td>
+            <td><a href="/Reviews/Index?id=@produto.Id">☆ @produto.Avaliacao.Value.ToString("0.00")/5,00 de @produto.NumeroAvaliacoes Avaliações</a></td>
             <td class="col-md-3"> <img src="data:image/jpeg;base64,@produto.ImagemEmBase64" alt="Imagem do Funcionário" style="max-width: 100px; max-height: 100px;"></td>
         </tr>
     }

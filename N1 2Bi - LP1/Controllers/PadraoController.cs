@@ -17,7 +17,7 @@ namespace N1_2Bi___LP1.Controllers
         protected virtual string RedirectView { get; set; } = "index";
 
 
-        public virtual IActionResult Index()
+        public virtual IActionResult Index(int id = 0)
         {
             try
             {
