@@ -12,8 +12,9 @@ namespace N1_2Bi___LP1.DAO
         {
             SqlParameter[] parametros =
             {
-            new SqlParameter("id", model.Id),
-            new SqlParameter("data", model.Data)
+                new SqlParameter("id", model.Id),
+                new SqlParameter("data", model.Data),
+                new SqlParameter("usuarioId", model.UsuarioId) 
         };
             return parametros;
         }
