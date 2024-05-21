@@ -15,7 +15,7 @@ namespace N1_2Bi___LP1.DAO
                 new SqlParameter("id", model.Id),
                 new SqlParameter("data", model.Data),
                 new SqlParameter("usuarioId", model.UsuarioId) 
-        };
+            };
             return parametros;
         }
 
@@ -24,7 +24,8 @@ namespace N1_2Bi___LP1.DAO
             PedidoViewModel c = new PedidoViewModel()
             {
                 Id = Convert.ToInt32(registro["id"]),
-                Data = Convert.ToDateTime(registro["data"])
+                Data = Convert.ToDateTime(registro["data"]),
+                UsuarioId = Convert.ToInt32(registro["usuarioId"])
             };
             return c;
         }
