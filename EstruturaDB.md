@@ -308,6 +308,27 @@ GO
 
 ```
 
+```sql
+CREATE PROCEDURE spListarReviewsPorProduto
+    @ProdutoId INT
+AS
+BEGIN
+    SELECT 
+        R.*,
+        U.Nome AS NomeUsuario,
+        P.Nome AS NomeProduto
+    FROM 
+        Reviews R
+    INNER JOIN 
+        Usuarios U ON R.UsuarioId = U.Id
+    INNER JOIN 
+        Produtos P ON R.ProdutoId = P.Id
+    WHERE 
+        R.ProdutoId = @ProdutoId
+    ORDER BY 
+        R.DataAvaliacao DESC;  -- Ordena as reviews pela data de avaliação em ordem decrescente
+END;
+```
 
 ## Stored Procedures Genéricas
 
