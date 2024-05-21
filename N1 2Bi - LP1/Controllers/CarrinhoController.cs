@@ -133,28 +133,47 @@ namespace N1_2Bi___LP1.Controllers
             }
         }
 
+        //
+
         public IActionResult EfetuarPedido()
         {
             try
             {
                 using (var transacao = new System.Transactions.TransactionScope())
                 {
-                    PedidoViewModel pedido = new PedidoViewModel();
-                    pedido.Data = DateTime.Now;
-                    PedidoDAO pedidoDAO = new PedidoDAO();
-                    int idPedido = pedidoDAO.Insert(pedido);
-                    PedidoItemDAO itemDAO = new PedidoItemDAO();
-                    var carrinho = ObtemCarrinhoNaSession();
-                    foreach (var elemento in carrinho)
+                    // Obter o UsuarioId da sessão
+                    int? userId = HttpContext.Session.GetInt32("UserId");
+
+                    // Verificar se o UserId está presente na sessão
+                    if (!userId.HasValue)
                     {
-                        PedidoItemViewModel item = new PedidoItemViewModel();
-                        item.PedidoId = idPedido;
-                        item.ProdutoId = elemento.ProdutoId; // Supondo que ProdutoId está disponível no elemento do carrinho
-                        item.Qtde = elemento.Quantidade;
-                        itemDAO.Insert(item);
-                    }
-                    transacao.Complete();
+                        return RedirectToAction("Index", "Login"); // Redirecionar para a página de login se o UserId não estiver na sessão
                 }
+
+                 PedidoViewModel pedido = new PedidoViewModel
+                {
+                    Data = DateTime.Now,
+                    UsuarioId = userId.Value // Atribuir o UserId ao pedido
+                };
+
+                PedidoDAO pedidoDAO = new PedidoDAO();
+                int idPedido = pedidoDAO.Insert(pedido);
+
+                PedidoItemDAO itemDAO = new PedidoItemDAO();
+                var carrinho = ObtemCarrinhoNaSession();
+                foreach (var elemento in carrinho)
+                {
+                    PedidoItemViewModel item = new PedidoItemViewModel
+                    {
+                        PedidoId = idPedido,
+                        ProdutoId = elemento.ProdutoId, // Supondo que ProdutoId está disponível no elemento do carrinho
+                        Qtde = elemento.Quantidade
+                    };
+                    itemDAO.Insert(item);
+                }
+                transacao.Complete();
+            }
+            
                 HelperControllers.LimparCarrinho(HttpContext.Session);
                 return RedirectToAction("Index", "Home");
             }
@@ -164,7 +183,7 @@ namespace N1_2Bi___LP1.Controllers
             }
         }
 
+        //
+        
     }
-
-
 }
