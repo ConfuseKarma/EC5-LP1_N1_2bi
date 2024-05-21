@@ -12,6 +12,7 @@ namespace N1_2Bi___LP1.Controllers
     {
 
         protected override bool ExigeAutenticacao { get; set; } = true;
+        protected override bool ExigeAdmin { get; set; } = true;
 
         public ProdutoController()
         {

@@ -3,6 +3,9 @@
 
 @{
     ViewData["Title"] = "Cadastro de Usuário";
+
+    // Verificação se o usuário logado é administrador
+    bool isAdmin = ViewBag.IsAdmin != null && (bool)ViewBag.IsAdmin;
 }
 
 <div class="container content-fluid mt-5 row-gap-5">
@@ -36,7 +39,7 @@
                                 <div class="valid-feedback">
                                     Parece bom!
                                 </div>
-                                <div class="invalid-feedback" >
+                                <div class="invalid-feedback">
                                     Por favor, forneça um CPF válido.
                                 </div>
                             </div>
@@ -136,27 +139,18 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6">
-                            <label for="IsAdmin" class="form-label">Administrador</label>
-                            <div class="input-group has-validation">
-                                <!-- PRECISA TESTAR Verifica se o usuário autenticado é um administrador -->
-                                @if (User.IsInRole("Admin"))
-                                {
-                                    <!-- Se sim, exibe a caixa de seleção para IsAdmin -->
+                        @if (isAdmin)
+                        {
+                            <div class="col-md-6">
+                                <label for="IsAdmin" class="form-label">Administrador</label>
+                                <div class="input-group has-validation">
                                     <select asp-for="IsAdmin" class="form-select" id="IsAdmin">
                                         <option value="False">Não</option>
                                         <option value="True">Sim</option>
                                     </select>
-                                }
-                                else
-                                {
-                                    <!-- Se não, mantém o campo oculto com valor padrão false -->
-                                    <input asp-for="IsAdmin" type="hidden" value="False" />
-                                    <p>Este campo só está disponível para administradores.</p>
-                                }
+                                </div>
                             </div>
-                        </div>
-
+                        }
 
                         <div class="col-md-7 mb-3">
                             <button type="submit" value="Salvar dados" class="rounded-pill btn btn-lg btn-info mr-3">Registrar</button>
@@ -172,7 +166,6 @@
     </div>
 </div>
 
-
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 
 <!-- Exibição de mensagens de erro -->
@@ -183,18 +176,12 @@
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 
 <script>
-    // Script JavaScript para exibir mensagem de alerta caso o CPF seja inválido
     $(document).ready(function () {
-        // Verifica se o formulário foi submetido
         $('form').submit(function () {
-            // Verifica se o CPF é inválido
             if ($('#Cpf').hasClass('is-invalid')) {
-                // Exibe a mensagem de alerta
                 $('#alerta-cpf-invalido').show();
-                // Retorna false para impedir o envio do formulário
                 return false;
             }
         });
     });
 </script>
-

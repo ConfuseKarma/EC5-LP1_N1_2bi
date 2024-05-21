@@ -33,6 +33,10 @@ namespace N1_2Bi___LP1.Controllers
         {
             try
             {
+                // Verificar se o usuário logado é administrador
+                bool isAdmin = HttpContext.Session.GetString("Role") == "Admin";
+                ViewBag.IsAdmin = isAdmin;
+
                 ViewBag.Operacao = "I";
                 T model = Activator.CreateInstance(typeof(T)) as T;
                 PreencheDadosParaView("I", model);
@@ -43,6 +47,7 @@ namespace N1_2Bi___LP1.Controllers
                 return View("Error", new ErrorViewModel(erro.ToString()));
             }
         }
+
         protected virtual void PreencheDadosParaView(string Operacao, T model)
         {
             if (GeraProximoId && Operacao == "I")
