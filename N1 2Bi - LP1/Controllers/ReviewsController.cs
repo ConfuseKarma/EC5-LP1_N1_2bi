@@ -56,6 +56,28 @@ namespace N1_2Bi___LP1.Controllers
             }
         }
 
+        public override IActionResult Edit(int id)
+        {
+            try
+            {
+                int? userId = HttpContext.Session.GetInt32("UserId");
+                ViewBag.UserId = userId.Value;
+                ViewBag.Operacao = "A";
+                var model = DAO.Consulta(id);
+                if (model == null)
+                    return RedirectToAction(NomeViewIndex);
+                else
+                {
+                    PreencheDadosParaView("A", model);
+                    return View(NomeViewForm, model);
+                }
+            }
+            catch (Exception erro)
+            {
+                return View("Error", new ErrorViewModel(erro.ToString()));
+            }
+        }
+
         //sobrecarga para o método PreencheDadosParaView
 
         protected override void PreencheDadosParaView(string Operacao, ReviewsViewModel model)

@@ -1,7 +1,6 @@
 ﻿@model List<ReviewsViewModel>
 <table class="table table-striped">
     <tr>
-        <th>Ações</th>
         <th>Código</th>
         <th>Usuário</th>
         <th>Descrição</th>
@@ -10,10 +9,6 @@
     @foreach (var review in Model)
     {
         <tr>
-            <td>
-                <a href="/Reviews/edit?id=@review.Id">✍🏻</a>
-                <a href="javascript:apagarReview(@review.Id)">💣</a>
-            </td>
             <td>@review.Id</td>
             <td>@review.NomeUser</td>
             <td>@review.Descricao</td>
@@ -21,9 +16,3 @@
         </tr>
     }
 </table>
-<script>
-    function apagarReview(id) {
-        if (confirm('Confirma a exclusão do registro?'))
-            location.href = '/Reviews/Delete?id=' + id;
-    }
-</script>

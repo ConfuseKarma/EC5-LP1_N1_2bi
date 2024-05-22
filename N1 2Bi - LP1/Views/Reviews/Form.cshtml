@@ -9,7 +9,8 @@
     <input value="@ViewBag.Operacao" type="hidden" name="Operacao">
     <input asp-for="Id" class="form-control" id="id" hidden>
     <input asp-for="ProdutoId" class="form-control" id="produtoId" hidden>
-    <input asp-for="UsuarioId" value="@ViewBag.UserId" hidden/>
+    <input asp-for="UsuarioId" value="@ViewBag.UserId" id="usuarioId" hidden>
+    <input value="@ViewBag.UserId" type="hidden" name="usuarioId">
 
     <label for="Descricao" class="control-label">Descrição</label>
     <input asp-for="Descricao" class="form-control" />

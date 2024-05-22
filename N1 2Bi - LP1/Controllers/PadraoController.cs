@@ -92,7 +92,7 @@ namespace N1_2Bi___LP1.Controllers
             if (model.Id <= 0)
                 ModelState.AddModelError("Id", "Id inválido!");
         }
-        public IActionResult Edit(int id)
+        public virtual IActionResult Edit(int id)
         {
             try
             {
