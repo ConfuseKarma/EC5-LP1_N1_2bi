@@ -74,7 +74,7 @@ namespace N1_2Bi___LP1.Controllers
                     if (RedirectController != null)
                        return RedirectToAction(RedirectView,  RedirectController);
                    else
-                        return RedirectToAction(RedirectView);
+                        return RedirectToAction(NomeViewIndex);
                 }
             }
             catch (Exception erro)

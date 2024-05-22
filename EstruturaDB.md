@@ -261,6 +261,24 @@ END
 GO
 ```
 
+### Stored Procedures de Pedido item
+
+```sql
+CREATE PROCEDURE spInsert_PedidoItem
+(
+    @id INT,
+    @pedidoId INT,
+    @produtoId INT,
+    @qtde INT
+)
+AS
+BEGIN
+    INSERT INTO PedidoItens (Id, PedidoId, ProdutoId, Qtde)
+    VALUES (@id, @pedidoId, @produtoId, @qtde);
+END
+GO
+```
+
 ## Stored Procedures de Reviews
 
 ```sql
