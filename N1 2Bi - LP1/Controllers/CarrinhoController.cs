@@ -134,46 +134,39 @@ namespace N1_2Bi___LP1.Controllers
         }
 
         //
-
         public IActionResult EfetuarPedido()
         {
+            // Obtém o ID do usuário logado da sessão
+            int usuarioId = HttpContext.Session.GetInt32("UserId") ?? 0;
+
+            // Verifica se o usuarioId obtido é válido
+            if (usuarioId == 0)
+            {
+                // Se o usuário não estiver logado, redireciona para a página de login ou exibe uma mensagem de erro
+                return RedirectToAction("Index", "Login");
+            }
+
             try
             {
                 using (var transacao = new System.Transactions.TransactionScope())
                 {
-                    // Obter o UsuarioId da sessão
-                    int? userId = HttpContext.Session.GetInt32("UserId");
-
-                    // Verificar se o UserId está presente na sessão
-                    if (!userId.HasValue)
+                    PedidoViewModel pedido = new PedidoViewModel();
+                    pedido.UsuarioId = usuarioId; // Define o ID do usuário logado
+                    pedido.Data = DateTime.Now;
+                    PedidoDAO pedidoDAO = new PedidoDAO();
+                    int idPedido = pedidoDAO.Insert(pedido);
+                    PedidoItemDAO itemDAO = new PedidoItemDAO();
+                    var carrinho = ObtemCarrinhoNaSession();
+                    foreach (var elemento in carrinho)
                     {
-                        return RedirectToAction("Index", "Login"); // Redirecionar para a página de login se o UserId não estiver na sessão
+                        PedidoItemViewModel item = new PedidoItemViewModel();
+                        item.PedidoId = idPedido;
+                        item.ProdutoId = elemento.ProdutoId; // Define o ID do produto do carrinho
+                        item.Qtde = elemento.Quantidade;
+                        itemDAO.Insert(item);
+                    }
+                    transacao.Complete();
                 }
-
-                 PedidoViewModel pedido = new PedidoViewModel
-                {
-                    Data = DateTime.Now,
-                    UsuarioId = userId.Value // Atribuir o UserId ao pedido
-                };
-
-                PedidoDAO pedidoDAO = new PedidoDAO();
-                int idPedido = pedidoDAO.Insert(pedido);
-
-                PedidoItemDAO itemDAO = new PedidoItemDAO();
-                var carrinho = ObtemCarrinhoNaSession();
-                foreach (var elemento in carrinho)
-                {
-                    PedidoItemViewModel item = new PedidoItemViewModel
-                    {
-                        PedidoId = idPedido,
-                        ProdutoId = elemento.ProdutoId, // Supondo que ProdutoId está disponível no elemento do carrinho
-                        Qtde = elemento.Quantidade
-                    };
-                    itemDAO.Insert(item);
-                }
-                transacao.Complete();
-            }
-            
                 HelperControllers.LimparCarrinho(HttpContext.Session);
                 return RedirectToAction("Index", "Home");
             }
@@ -183,7 +176,13 @@ namespace N1_2Bi___LP1.Controllers
             }
         }
 
-        //
-        
+
+
+
+
     }
+
+    //
+
 }
+

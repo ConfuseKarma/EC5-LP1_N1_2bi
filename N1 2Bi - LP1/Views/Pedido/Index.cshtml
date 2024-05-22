@@ -1,1 +1,33 @@
-﻿
+﻿@model List<N1_2Bi___LP1.Models.PedidoViewModel>
+
+
+
+<br />
+<br />
+<table class="table table-striped table-responsive">
+    <tr>
+        <th>Ações</th>
+        <th>Código</th>
+        <th>Data</th>
+        <th>Usuário ID</th>
+    </tr>
+
+    @foreach (var pedido in Model)
+    {
+        <tr>
+            <td>
+                <a href="/pedido/edit?id=@pedido.Id">✍🏻</a>
+                <a href="javascript:apagarPedido(@pedido.Id)">💣</a>
+            </td>
+            <td>@pedido.Id</td>
+            <td>@pedido.Data.ToString("dd/MM/yyyy")</td>
+            <td>@pedido.UsuarioId</td>
+        </tr>
+    }
+</table>
+<script>
+    function apagarPedido(id) {
+        if (confirm('Confirma a exclusão do registro?'))
+            location.href = 'Pedido/Delete?id=' + id;
+    }
+</script>

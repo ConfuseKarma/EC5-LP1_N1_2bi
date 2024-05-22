@@ -30,6 +30,21 @@ namespace N1_2Bi___LP1.DAO
             return c;
         }
 
+        public override List<PedidoViewModel> Listagem(int id = 0)
+        {
+            string sql = "EXEC spListagem @Tabela, @Ordem";
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                new SqlParameter("@Tabela", "Pedidos"),
+                new SqlParameter("@Ordem", "Id")
+            };
+
+            var tabela = HelperDAO.ExecutaSelect(sql, parametros);
+            List<PedidoViewModel> lista = new List<PedidoViewModel>();
+            foreach (DataRow registro in tabela.Rows)
+                lista.Add(MontaModel(registro));
+            return lista;
+        }
         protected override void SetTabela()
         {
             Tabela = "Pedidos";

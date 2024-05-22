@@ -12,11 +12,11 @@ namespace N1_2Bi___LP1.DAO
         {
             SqlParameter[] parametros =
             {
-            new SqlParameter("id", model.Id),
-            new SqlParameter("PedidoId", model.PedidoId),
-            new SqlParameter("CidadeId", model.ProdutoId),
-            new SqlParameter("Qtde", model.Qtde)
-        };
+                new SqlParameter("@Id", model.Id),
+                new SqlParameter("@PedidoId", model.PedidoId),
+                new SqlParameter("@ProdutoId", model.ProdutoId),
+                new SqlParameter("@Qtde", model.Qtde)
+    };
             return parametros;
         }
 
@@ -24,12 +24,30 @@ namespace N1_2Bi___LP1.DAO
         {
             PedidoItemViewModel c = new PedidoItemViewModel()
             {
-                Id = Convert.ToInt32(registro["id"]),
-                ProdutoId = Convert.ToInt32(registro["Cidadeid"]),
+                Id = Convert.ToInt32(registro["Id"]),
                 PedidoId = Convert.ToInt32(registro["PedidoId"]),
-                Qtde = Convert.ToInt32(registro["id"]),
+                ProdutoId = Convert.ToInt32(registro["ProdutoId"]),
+                Qtde = Convert.ToInt32(registro["Qtde"])
             };
             return c;
+        }
+
+
+
+        public override List<PedidoItemViewModel> Listagem(int id = 0)
+        {
+            string sql = "EXEC spListagem @Tabela, @Ordem";
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                new SqlParameter("@Tabela", "PedidoItem"),
+                new SqlParameter("@Ordem", "Id")
+            };
+
+            var tabela = HelperDAO.ExecutaSelect(sql, parametros);
+            List<PedidoItemViewModel> lista = new List<PedidoItemViewModel>();
+            foreach (DataRow registro in tabela.Rows)
+                lista.Add(MontaModel(registro));
+            return lista;
         }
 
         protected override void SetTabela()
