@@ -273,7 +273,7 @@ CREATE PROCEDURE spInsert_PedidoItem
 )
 AS
 BEGIN
-    INSERT INTO PedidoItens (Id, PedidoId, ProdutoId, Qtde)
+    INSERT INTO PedidoItem (Id, PedidoId, ProdutoId, Qtde)
     VALUES (@id, @pedidoId, @produtoId, @qtde);
 END
 GO
