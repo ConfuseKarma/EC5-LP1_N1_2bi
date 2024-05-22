@@ -348,6 +348,41 @@ BEGIN
 END;
 ```
 
+```sql
+CREATE PROCEDURE spConsultaAvancadaReviews
+    @produtoId INT = NULL,
+    @nomeUsuario NVARCHAR(100) = NULL,
+    @pontuacao INT = NULL,
+	@periodo INT = NULL
+AS
+BEGIN
+    SELECT 
+        r.Id,
+        r.ProdutoId,
+        p.Nome AS NomeProduto,
+        r.UsuarioId,
+        u.Nome AS NomeUsuario,
+        r.Pontuacao,
+        r.Descricao,
+        r.DataAvaliacao
+    FROM 
+        Reviews r
+    JOIN 
+        Produtos p ON r.ProdutoId = p.Id
+    JOIN 
+        Usuarios u ON r.UsuarioId = u.Id
+    WHERE 
+        (@produtoId IS NULL OR r.ProdutoId = @produtoId) AND
+        (@nomeUsuario IS NULL OR u.Nome LIKE '%' + @nomeUsuario + '%') AND
+        (@pontuacao IS NULL OR r.Pontuacao = @pontuacao)
+    ORDER BY 
+        CASE 
+            WHEN @periodo = 1 THEN r.DataAvaliacao END DESC,
+        CASE 
+            WHEN @periodo = 2 THEN r.DataAvaliacao END ASC;
+END;
+```
+
 ## Stored Procedures Genéricas
 
 ### sp's Genéricas
