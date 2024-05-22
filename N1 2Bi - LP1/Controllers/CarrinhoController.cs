@@ -163,6 +163,7 @@ namespace N1_2Bi___LP1.Controllers
                     foreach (var elemento in carrinho)
                     {
                         PedidoItemViewModel item = new PedidoItemViewModel();
+                        item.Id = itemDAO.ProximoId();
                         item.PedidoId = idPedido;
                         item.ProdutoId = elemento.ProdutoId; // Define o ID do produto do carrinho
                         item.Qtde = elemento.Quantidade;

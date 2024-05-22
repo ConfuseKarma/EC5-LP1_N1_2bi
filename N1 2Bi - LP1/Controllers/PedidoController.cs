@@ -19,8 +19,6 @@ namespace N1_2Bi___LP1.Controllers
             DAO = new PedidoDAO();
             GeraProximoId = true;
         }
-
-
     }
 
 

@@ -6,22 +6,21 @@
 <br />
 <table class="table table-striped table-responsive">
     <tr>
-        <th>Ações</th>
         <th>Código</th>
         <th>Data</th>
-        <th>Usuário ID</th>
+        <th>Nome do Usuário</th>
+        <th>Valor Total</th>
+        <th>Quantidade de produtos</th>
     </tr>
 
     @foreach (var pedido in Model)
     {
         <tr>
-            <td>
-                <a href="/pedido/edit?id=@pedido.Id">✍🏻</a>
-                <a href="javascript:apagarPedido(@pedido.Id)">💣</a>
-            </td>
             <td>@pedido.Id</td>
             <td>@pedido.Data.ToString("dd/MM/yyyy")</td>
-            <td>@pedido.UsuarioId</td>
+            <td>@pedido.NomeUsuario</td>
+            <td>@pedido.ValorTotal.Value.ToString("C")</td>
+            <td>@pedido.QuantidadeProdutos</td>
         </tr>
     }
 </table>
