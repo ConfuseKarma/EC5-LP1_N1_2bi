@@ -235,6 +235,27 @@ END
 GO
 ```
 
+```sql
+CREATE PROCEDURE spListarPedidos
+AS
+BEGIN
+    SELECT 
+        p.Id AS id,
+        p.Data AS DataPedido,
+		p.UsuarioId AS UsuarioId,
+        u.Nome AS NomeUsuario,
+        COUNT(pi.Id) AS QuantidadeProdutos,
+        SUM(pr.Preco * pi.Qtde) AS ValorTotal
+    FROM 
+        Pedidos p
+        INNER JOIN Usuarios u ON p.UsuarioId = u.Id
+        INNER JOIN PedidoItem pi ON p.Id = pi.PedidoId
+        INNER JOIN Produtos pr ON pi.ProdutoId = pr.Id
+    GROUP BY 
+        p.Id, p.Data, u.Nome, p.UsuarioId
+END
+```
+
 ### Stored Procedures de Pedido item
 
 ```sql
