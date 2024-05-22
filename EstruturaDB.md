@@ -127,32 +127,6 @@ END
 GO
 ```
 
-```sql
-
-CREATE PROCEDURE [dbo].[spConsultaAvancadaUsuarios]
-(
-    @nome VARCHAR(MAX),
-    @cpf VARCHAR(14)
-)
-AS
-BEGIN
-    IF @cpf = ''
-    BEGIN
-        SELECT *
-        FROM Usuarios
-        WHERE Nome LIKE '%' + @nome + '%';
-    END
-    ELSE
-    BEGIN
-        SELECT *
-        FROM Usuarios
-        WHERE Nome LIKE '%' + @nome + '%' AND CPF = @cpf;
-    END
-END
-
-
-```
-
 ### Stored Procedures de Produtos
 
 ```sql
