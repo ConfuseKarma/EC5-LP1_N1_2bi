@@ -19,6 +19,11 @@ namespace N1_2Bi___LP1.Controllers
             return View();
         }
 
+        public IActionResult About()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();

@@ -69,7 +69,7 @@
                         <div class="col-md-6">
                             <label for="Cep" class="form-label">CEP</label>
                             <div class="input-group has-validation">
-                                <input asp-for="Cep" type="text" class="form-control" id="Cep" required>
+                                <input asp-for="Cep" type="text" class="form-control" id="Cep" onblur="buscaCEP()" required>
                                 <div class="valid-feedback">
                                     Parece bom!
                                 </div>
