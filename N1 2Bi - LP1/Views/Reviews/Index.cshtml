@@ -1,7 +1,7 @@
 ﻿@model List<ReviewsViewModel>
 <h2>Reviews para @Model.FirstOrDefault()?.NomeProduto</h2>
 
-<a href="/Reviews/ExibeConsultaAvancada" class="btn btn-success">Consulta Avançada</a>
+<a href="/Reviews/ExibeConsultaAvancada?id=@Model.FirstOrDefault()?.ProdutoId" class="btn btn-success">Consulta Avançada</a>
 <br />
 <br />
 <table class="table table-striped table-responsive">

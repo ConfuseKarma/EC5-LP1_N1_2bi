@@ -4,6 +4,7 @@
 <fieldset id="areaFiltro" class="form-group">
     <legend>Consulta avançada de Reviews</legend>
     <div class="row">
+        <input value="@ViewBag.ProdutoId" id="produtoId" type="hidden" name="produtoId">
         <div class="col-lg-4">
             Nome do usuário<br />
             <input type="text" id="nomeUsuario" class="form-control" />
@@ -18,10 +19,17 @@
                 <option value="5">☆☆☆☆☆</option>
             </select>
         </div>
+        <div class="col-lg-2">
+            Período <br />
+            <select id="periodo" class="form-control">
+                <option value="1">Análises mais Recentes</option>
+                <option value="2">Análises mais Antigas</option>
+            </select>
+        </div>
         <div class="col-lg-1">
             <br />
             <input type="button" id="btnFiltro" class="btn btn-success" value="Aplicar"
-                   onclick="aplicaFiltroConsultaAvancada()" />
+                   onclick="aplicaFiltroConsultaAvancadaReviews()" />
         </div>
     </div>
 </fieldset>

@@ -55,3 +55,24 @@ function aplicaFiltroConsultaAvancada() {
     });
 
 }
+
+function aplicaFiltroConsultaAvancadaReviews() {
+    var vProdutoId = document.getElementById('produtoId').value;
+    var vNomeUsuario = document.getElementById('nomeUsuario').value;
+    var vPontuacao = document.getElementById('pontuacao').value;
+    var vPeriodo = document.getElementById('periodo').value;
+
+    $.ajax({
+        url: "/Reviews/ObtemDadosConsultaAvancada",
+        data: { produtoId: vProdutoId, nomeUsuario: vNomeUsuario, pontuacao: vPontuacao, periodo: vPeriodo },
+        success: function (dados) {
+            if (dados.erro != undefined) {
+                alert(dados.msg);
+            }
+            else {
+                document.getElementById('resultadoConsulta').innerHTML = dados;
+            }
+        },
+    });
+
+}

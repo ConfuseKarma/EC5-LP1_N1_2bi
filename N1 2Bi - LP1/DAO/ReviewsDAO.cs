@@ -62,5 +62,21 @@ namespace N1_2Bi___LP1.DAO
                 lista.Add(MontaModel(registro));
             return lista;
         }
+
+        public List<ReviewsViewModel> ConsultaAvancadaReviews(int produtoId, string nomeUsuario,
+                                                        int pontuacao, int periodo)
+        {
+            SqlParameter[] parametros = {
+                new SqlParameter("produtoId", produtoId),
+                new SqlParameter("nomeUsuario", nomeUsuario),
+                new SqlParameter("pontuacao", pontuacao),
+                new SqlParameter("periodo", periodo)
+            };
+            var tabela = HelperDAO.ExecutaProcSelect("spConsultaAvancadaReviews", parametros);
+            var lista = new List<ReviewsViewModel>();
+            foreach (DataRow dr in tabela.Rows)
+                lista.Add(MontaModel(dr));
+            return lista;
+        }
     }
 }

@@ -84,5 +84,38 @@ namespace N1_2Bi___LP1.Controllers
             if (reviews.Pontuacao <= 0)
                 ModelState.AddModelError("Pontuacao", "Selecione uma Pontuação.");
         }
+
+        public IActionResult ExibeConsultaAvancada(int id)
+        {
+            try
+            {
+                ViewBag.ProdutoId = id;
+                List<ReviewsViewModel> review = new List<ReviewsViewModel>();
+                return View("ConsultaAvancada", review);
+            }
+            catch (Exception erro)
+            {
+                return View("Error", new ErrorViewModel(erro.Message));
+            }
+
+        }
+
+        public IActionResult ObtemDadosConsultaAvancada(int produtoId, string nomeUsuario,
+                                                        int pontuacao, int periodo)
+        {
+            try
+            {
+                ReviewsDAO dao = new ReviewsDAO();
+                if (string.IsNullOrEmpty(nomeUsuario))
+                    nomeUsuario = "";
+
+                List<ReviewsViewModel> lista = dao.ConsultaAvancadaReviews(produtoId, nomeUsuario, pontuacao, periodo);
+                return PartialView("pvGridReviews", lista);
+            }
+            catch (Exception erro)
+            {
+                return Json(new { erro = true, msg = erro.Message });
+            }
+        }
     }
 }
