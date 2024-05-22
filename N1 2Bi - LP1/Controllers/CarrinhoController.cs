@@ -154,7 +154,10 @@ namespace N1_2Bi___LP1.Controllers
                     pedido.UsuarioId = usuarioId; // Define o ID do usuário logado
                     pedido.Data = DateTime.Now;
                     PedidoDAO pedidoDAO = new PedidoDAO();
-                    int idPedido = pedidoDAO.Insert(pedido);
+                    int idPedido = pedidoDAO.ProximoId();
+                    pedido.Id = idPedido;
+                    pedidoDAO.Insert(pedido);
+
                     PedidoItemDAO itemDAO = new PedidoItemDAO();
                     var carrinho = ObtemCarrinhoNaSession();
                     foreach (var elemento in carrinho)
